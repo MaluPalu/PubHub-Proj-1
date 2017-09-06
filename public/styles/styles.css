@@ -1,26 +1,37 @@
 body {
   background-color: gray;
+  font-family: "Open Sans Condensed", sans-serif;
+  color: #fafafa;
 }
 h1 {
-  margin-top: 100px;
-  text-align: center;
-
-  /*color: #181818;*/
+    font-family: "Shadows Into Light", cursive;
+    text-align: center;
+}
+h3 {
+    font-family: "Shadows Into Light", cursive;
 }
 /*BEG header*/
 .jumbotron {
-  /*height: 150px;*/
+  height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top;
+  background-position: bottom;
   text-align: center;
+  width: 100%;
+}
+.index-title {
+  margin-top: 50px;
+}
+.reviews-header {
+  text-align: center;
+  margin-top: 20px;
 }
 /*END header*/
 
 /*BEG description*/
 .description {
   text-align: center;
-
+  margin-bottom: 2rem;
 }
 /*END description*/
 
@@ -31,41 +42,41 @@ h1 {
   border: green solid 2px;
   background-repeat: no-repeat;
   background-position: center;
-
+  margin-bottom: 2rem;
 }
 /*END map container*/
 
 /*BEG PubHub Form*/
-
-/*End pubHub Form*/
-
-/*BEG Form */
-
-/*End Form*/
-
-
-/*BEG Content*/
 .list-group-item {
-  padding: 5px 10px;
   background-color: rgba(255, 255, 255, 0.5);
+  line-height: 15px;
+  padding: .6rem 1rem;
 }
 .container  {
   padding-right: 10px;
   padding-left: 10px;
-  margin-bottom: 2rem;
 }
 .panel-footer {
   background-color: rgba(255, 255, 255, 0.5);
   padding-top: 15px;
   padding-bottom: 15px;
 }
-/*End Content*/
+/*End pubHub Form*/
+
+/*BEG review Form*/
+#review-form {
+  border: black solid 2px;
+  border-radius: .5rem;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+/*END review Form*/
 
 /*BEG Form for Create*/
 .pubHub-container {
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  background-position: top;
   background-size: cover;
   padding-top: 20px;
 }
@@ -74,7 +85,6 @@ h1 {
   padding-right: 15px;
 }
 /*End Form for Create*/
-
 
 /*BEG Footer*/
 .bold {
@@ -92,5 +102,8 @@ div.col-sm-2 {
 .footer-row {
   display: flex;
 }
-
 /*END Footer*/
+
+/*BEG review Create*/
+
+/*END review Create*/
