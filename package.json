@@ -1,0 +1,27 @@
+{
+  "name": "pubhub-proj-1",
+  "version": "1.0.0",
+  "description": "Privately Owned Public Outdoor Space Locations!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaluPalu/PubHub-Proj-1.git"
+  },
+  "author": "Malu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaluPalu/PubHub-Proj-1/issues"
+  },
+  "homepage": "https://github.com/MaluPalu/PubHub-Proj-1#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "method-override": "^2.3.9",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.10"
+  }
+}
