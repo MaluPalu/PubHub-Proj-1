@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pub Hub</title>
+  <!-- STYLESHEETS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="../public/styles/styles.css">
+
+
+  <!-- VENDOR SCRIPTS -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+  <!-- APPLICATION SCRIPTS -->
+  <script src="/scripts/app.js"></script>
+</head>
+<body>
+  <div class="jumbotron" style="background-image: url(http://media.istockphoto.com/photos/textured-blue-painted-background-picture-id534129348?k=6&m=534129348&s=612x612&w=0&h=Bj4GXF6wQKxbqcgxO3Sg47gZeCORPk_0wofD2zeoKnM=); border: pink solid 2px">
+    <h1>Welcome to Pub Hub</h1>
+    <h3>We're here to help you find the nearest outdoor eating area near you!</h3>
+  </div>
+  <div class="container description" style="border: red solid 2px">
+    <p>Description</p>
+  </div>
+  <div class="container map-container" style="background-image: url(http://baycityguide.com/media/00PU000000FZF3IMAX/San-Francisco-Bay-Area-Map-518x301.jpg)">
+    <p>Insert Map here</p>
+  </div>
+
+  <!-- BEG pubHub container-->
+  <div class="container" style="border: orange solid 2px">
+    <!-- BEG pubHub card -->
+    <div class="pubHub col-sm-6 col-sm-offset-1">
+      <div class="panel-body list-group-item" style="background-color: blue">
+
+        <!-- begin pubHub internal row -->
+        <div class="row">
+          <div class="col-sm-4 col-xs-12">
+            <img class="img-responsive" src="https://s-media-cache-ak0.pinimg.com/originals/70/19/9c/70199cc07f049680db4e1f84350a9095.jpg" style="width: 100%" />
+          </div>
+          <div class="col-sm-8 col-xs-12" style="color:black">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <h4 class='inline-header'><b>Name: </b></h4>
+                <span>test</span>
+              </li>
+              <li class="list-group-item">
+                <h4><b>Street Address: </b></h4>
+                <span>test</span>
+              </li>
+              <li class="list-group-item">
+                <h4><b>Cross Street: </b></h4>
+                <span>test</span>
+              </li>
+              <li class="list-group-item">
+                <h4><b>Notes: </b></h4>
+                <p class="pubHub-notes">test</p>
+              </li>
+              <li class="list-group-item">
+                <h4><b>Reviews: </b></h4>
+                <p class="pubHub-reviews">test</p>
+              </li>
+            </ul>
+            <li class="list-group-item">
+              <button class='btn btn-info edit-pubHub tgl-btn' style="width: 125px">Edit Notes</button>
+              <!-- <button class='btn btn-success save-pubHub hidden' style="width: 125px">Save Changes</button> -->
+              <button class='btn btn-danger delete-pubHub' style="width: 125px">Delete</button>
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of pubHub internal row -->
+    <!-- end one pubHub -->
+
+  </div>
+</div>
+<!-- END pubHub container-->
+
+<!-- BEGIN FORM SAMPLE -->
+<div class="container-fluid pubHub-container margin-top-20 no-shift" style="background-image: url('https://i.pinimg.com/736x/e3/90/35/e3903526a00e5d03e223ffa66d1a801c--modern-beach-decor-seascape-paintings.jpg')">
+  <section id='pubHub-form' class="container">
+
+    <form class="form-horizontal">
+      <fieldset class="pubHub-content">
+        <!-- Form Name -->
+        <legend><h3>Add a New Pub Hub</h3></legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name"> Name</label>
+          <div class="col-md-4">
+            <input type="text" name="name"  placeholder="" class="form-control input-md" required="">
+          </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="location"> Location</label>
+          <div class="col-md-4">
+            <input name="location" type="text" placeholder="City Name" class="form-control input-md">
+          </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="website">Website</label>
+          <div class="col-md-4">
+            <input class="form-control input-md" name="website" placeholder="http://www.website_example.com">
+          </div>
+        </div>
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="image">Image</label>
+          <div class="col-md-4">
+            <input class="form-control" name="image" placeholder="http://www.image_example.jpg">
+          </div>
+        </div>
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="imageBackground">Background Image</label>
+          <div class="col-md-4">
+            <input class="form-control" name="imageBackground" placeholder="http://www.image_example.com">
+          </div>
+        </div>
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="notes">Notes</label>
+          <div class="col-md-4">
+            <textarea class="form-control" name="notes" maxlength="60"></textarea>
+          </div>
+        </div>
+        <!-- Button -->
+        <div class="form-group">
+          <div class="col-md-4 control-label"></div>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </section>
+</div>
+<!--   END FORM SAMPLE -->
+
+</body>
+</html>
