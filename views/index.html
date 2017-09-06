@@ -30,117 +30,130 @@
 
   <!-- BEG pubHub container-->
   <div class="container" style="border: orange solid 2px; margin-bottom: 2rem">
-    <!-- BEG pubHub card -->
-    <div class="pubHub col-sm-6 col-sm-offset-1">
-      <div class="panel-body list-group-item" style="background-color: blue">
+    <div id="pubs"></div>
 
-        <!-- begin pubHub internal row -->
-        <div class="row">
-          <div class="col-sm-4 col-xs-12">
-            <img class="img-responsive" src="https://s-media-cache-ak0.pinimg.com/originals/70/19/9c/70199cc07f049680db4e1f84350a9095.jpg" style="width: 100%" />
-          </div>
-          <div class="col-sm-8 col-xs-12" style="color:black">
-            <ul class="list-group">
-              <li class="list-group-item">
-                <h5 class='inline-header'><b>Name: </b></h5>
-                <span>test</span>
-              </li>
-              <li class="list-group-item">
-                <h5><b>Street Address: </b></h5>
-                <span>test</span>
-              </li>
-              <li class="list-group-item">
-                <h5><b>Cross Street: </b></h5>
-                <span>test</span>
-              </li>
-              <li class="list-group-item">
-                <h5><b>Notes: </b></h5>
-                <p class="pubHub-notes">test</p>
-              </li>
-              <li class="list-group-item">
-                <h5><b>Reviews: </b></h5>
-                <p class="pubHub-reviews">test</p>
-              </li>
-            </ul>
-            <li class="list-group-item">
-              <button class='btn btn-info edit-pubHub tgl-btn' style="width: 125px">Edit Notes</button>
-              <!-- <button class='btn btn-success save-pubHub hidden' style="width: 125px">Save Changes</button> -->
-              <button class='btn btn-danger delete-pubHub' style="width: 125px">Delete</button>
-            </li>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end of pubHub internal row -->
-    <!-- end one pubHub -->
-
-  </div>
-</div>
-<!-- END pubHub container-->
 
 <!-- BEGIN FORM SAMPLE -->
 <div class="container-fluid pubHub-container" style="background-image: url('../public/images/conversation01.jpg')">
-  <section id='pubHub-form' class="container">
+ <section id='pubHub-form' class="container">
 
-    <form class="form-horizontal">
-      <fieldset class="pubHub-content">
-        <!-- Form Name -->
-        <legend><h3>Add a New Pub Hub</h3></legend>
+   <form id="pubSubmit" class="form-horizontal">
+     <fieldset class="pubHub-content">
+       <!-- Form Name -->
+       <legend><h3>Add a New Pub Hub</h3></legend>
 
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="name"> Name</label>
-          <div class="col-md-4">
-            <input type="text" name="name"  placeholder="" class="form-control input-md" required="">
-          </div>
-        </div>
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="location"> Location</label>
-          <div class="col-md-4">
-            <input name="location" type="text" placeholder="City Name" class="form-control input-md">
-          </div>
-        </div>
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="website">Website</label>
-          <div class="col-md-4">
-            <input class="form-control input-md" name="website" placeholder="http://www.website_example.com">
-          </div>
-        </div>
-        <!-- Textarea -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="image">Image</label>
-          <div class="col-md-4">
-            <input class="form-control" name="image" placeholder="http://www.image_example.jpg">
-          </div>
-        </div>
-        <!-- Textarea -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="imageBackground">Background Image</label>
-          <div class="col-md-4">
-            <input class="form-control" name="imageBackground" placeholder="http://www.image_example.com">
-          </div>
-        </div>
-        <!-- Textarea -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="notes">Notes</label>
-          <div class="col-md-4">
-            <textarea class="form-control" name="notes" maxlength="60"></textarea>
-          </div>
-        </div>
-        <!-- Button -->
-        <div class="form-group">
-          <div class="col-md-4 control-label"></div>
-          <div class="col-md-4">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  </section>
+       <!-- Text input-->
+       <div class="form-group">
+         <label class="col-md-4 control-label" for="nameHub">Name</label>
+         <div class="col-md-4">
+           <input type="text" name="nameHub"  placeholder="" class="form-control input-md" required="">
+         </div>
+       </div>
+       <!-- Text input-->
+       <div class="form-group">
+         <label class="col-md-4 control-label" for="streetAddress">Street Address</label>
+         <div class="col-md-4">
+           <input name="streetAddress" type="text" class="form-control input-md">
+         </div>
+       </div>
+       <!-- Text input-->
+       <div class="form-group">
+         <label class="col-md-4 control-label" for="gps">GPS Coordinates</label>
+         <div class="col-md-4">
+           <input class="form-control input-md" name="lat" placeholder="latituide-pubHub">
+           <input class="form-control input-md" name="long" placeholder="Longitude-pubHub">
+         </div>
+       </div>
+       <!-- Textarea -->
+       <div class="form-group">
+         <label class="col-md-4 control-label" for="crossStreet">Cross Street</label>
+         <div class="col-md-4">
+           <input class="form-control" name="crossStreet" placeholder="http://www.image_example.jpg">
+         </div>
+       </div>
+       <!-- Textarea -->
+       <div class="form-group">
+         <label class="col-md-4 control-label" for="photo">Photo</label>
+         <div class="col-md-4">
+           <input class="form-control" name="photo" placeholder="http://www.image_example.com">
+         </div>
+       </div>
+       <!-- Textarea -->
+       <div class="form-group">
+         <label class="col-md-4 control-label" for="notes">Notes</label>
+         <div class="col-md-4">
+           <textarea class="form-control" name="notes" maxlength="60"></textarea>
+         </div>
+       </div>
+       <!-- Button -->
+       <div class="form-group">
+         <div class="col-md-4 control-label"></div>
+         <div class="col-md-4">
+           <button type="submit" class="btn btn-primary">Submit</button>
+         </div>
+       </div>
+     </fieldset>
+   </form>
+ </section>
 </div>
 <!--   END FORM SAMPLE -->
+
+<div id="edit-pubHub-modal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">Add a User</h4>
+			</div>
+			<form>
+			<div class="modal-body">
+				<div class="bold">
+					Name
+				</div>
+				<div class="margin-top-20">
+					<input name="nameHub" type="text" class="form-control" />
+				</div>
+				<div class="bold margin-top-20">
+					Street Address
+				</div>
+				<div class="margin-top-20">
+					<input name="streetAddress" type="text" class="form-control" />
+				</div>
+				<div class="bold margin-top-20">
+					GPS Coordinates
+				</div>
+				<div class="margin-top-20">
+					<input name="gpsCoords" type="text" class="form-control" />
+				</div>
+				<div class="bold margin-top-20">
+					Cross Street
+				</div>
+				<div class="margin-top-20">
+					<input name="crossStreet" type="text" class="form-control" />
+				</div>
+        <div class="bold margin-top-20">
+					Photo
+				</div>
+				<div class="margin-top-20">
+					<input name="photo" type="text" class="form-control" />
+				</div>
+        <div class="bold margin-top-20">
+          Notes
+        </div>
+        <div class="margin-top-20">
+          <input name="notes" type="text" class="form-control" />
+        </div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+				<button type="submit" class="btn btn-primary">Save User</button>
+			</div>
+		</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 </body>
 </html>

@@ -9,8 +9,8 @@ app.set("view engine", "ejs");
 app.get('/api', controllers.api.index);
 
 // Create route for html to be shown
-app.get("/", (req, res) => {
-  res.render("index");
+app.get('/', function homepage(req, res) {
+  res.sendFile(__dirname + '/views/index.html');
 });
 
 app.use(express.static('public'));
@@ -30,7 +30,10 @@ app.use(function(req, res, next) {
 });
 
 
-app.get('/api/pubHub', controllers.pubHub.index)
+app.get('/api/pubHub', controllers.pubHub.index);
+
+app.post('/api/pubHub', controllers.pubHub.create);
+
 
 app.listen(process.env.PORT || 4000, function () {
   console.log('Express server is up and running on http://localhost:4000');
