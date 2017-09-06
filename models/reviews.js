@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var ReviewsSchema = new Schema({
   nameReviewer: String,
-  stars: String,
+  rating: String,
   review: String,
   PubHub: String
 });

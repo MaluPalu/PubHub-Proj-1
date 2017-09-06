@@ -4,7 +4,8 @@
   "description": "Privately Owned Public Outdoor Space Locations!",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,6 @@
     "method-override": "^2.3.9",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.10"
-  }
+  },
+  "devDependencies": {}
 }
