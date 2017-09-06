@@ -6,7 +6,7 @@
   <title>Pub Hub</title>
   <!-- STYLESHEETS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  <link rel="stylesheet" href="../public/styles/styles.css">
+  <link rel="stylesheet" href="/styles/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Shadows+Into+Light" rel="stylesheet">
 
   <!-- VENDOR SCRIPTS -->
@@ -16,7 +16,7 @@
   <script src="/scripts/app.js"></script>
 </head>
 <body>
-  <div class="jumbotron" style="background-image: url(../public/images/conversation02.jpg); border: pink solid 2px">
+  <div class="jumbotron" style="background-image: url(/images/conversation02.jpg); border: pink solid 2px">
     <div><h1 class="index-title"><b>Welcome to Pub Hub</b></h1>
     <h3>We're here to help you find the nearest outdoor space area near you!</h3>
   </div>
@@ -36,15 +36,12 @@
 
 
 <!-- BEGIN FORM SAMPLE -->
-<div class="container-fluid pubHub-container" style="background-image: url('../public/images/conversation01.jpg')">
+<div class="container-fluid pubHub-container" style="background-image: url('/images/conversation01.jpg')">
  <section id='pubHub-form' class="container">
-
    <form id="pubSubmit" class="form-horizontal">
      <fieldset class="pubHub-content">
        <!-- Form Name -->
        <legend><h3>Add a New Pub Hub</h3></legend>
-
-
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="name-pubhub">Name</label>
@@ -98,61 +95,6 @@
       </fieldset>
     </form>
   </section>
-=======
-       <!-- Text input-->
-       <div class="form-group">
-         <label class="col-md-4 control-label" for="nameHub">Name</label>
-         <div class="col-md-4">
-           <input type="text" name="nameHub"  placeholder="" class="form-control input-md" required="">
-         </div>
-       </div>
-       <!-- Text input-->
-       <div class="form-group">
-         <label class="col-md-4 control-label" for="streetAddress">Street Address</label>
-         <div class="col-md-4">
-           <input name="streetAddress" type="text" class="form-control input-md">
-         </div>
-       </div>
-       <!-- Text input-->
-       <div class="form-group">
-         <label class="col-md-4 control-label" for="gps">GPS Coordinates</label>
-         <div class="col-md-4">
-           <input class="form-control input-md" name="lat" placeholder="latituide-pubHub">
-           <input class="form-control input-md" name="long" placeholder="Longitude-pubHub">
-         </div>
-       </div>
-       <!-- Textarea -->
-       <div class="form-group">
-         <label class="col-md-4 control-label" for="crossStreet">Cross Street</label>
-         <div class="col-md-4">
-           <input class="form-control" name="crossStreet" placeholder="http://www.image_example.jpg">
-         </div>
-       </div>
-       <!-- Textarea -->
-       <div class="form-group">
-         <label class="col-md-4 control-label" for="photo">Photo</label>
-         <div class="col-md-4">
-           <input class="form-control" name="photo" placeholder="http://www.image_example.com">
-         </div>
-       </div>
-       <!-- Textarea -->
-       <div class="form-group">
-         <label class="col-md-4 control-label" for="notes">Notes</label>
-         <div class="col-md-4">
-           <textarea class="form-control" name="notes" maxlength="60"></textarea>
-         </div>
-       </div>
-       <!-- Button -->
-       <div class="form-group">
-         <div class="col-md-4 control-label"></div>
-         <div class="col-md-4">
-           <button type="submit" class="btn btn-primary">Submit</button>
-         </div>
-       </div>
-     </fieldset>
-   </form>
- </section>
->>>>>>> master
 </div>
 <!--   END FORM SAMPLE -->
 

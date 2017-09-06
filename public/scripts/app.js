@@ -38,7 +38,7 @@ $(document).ready(function() {
     for (let i = 0; i < pubs.length; i++) {
       renderPub(pubs[i]);
     }
-    initMap(pubs);
+    // initMap(pubs);
   };
   function handleError(err){
     console.log('There has been an error: ', err);
