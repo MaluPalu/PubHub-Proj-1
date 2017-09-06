@@ -17,7 +17,7 @@
 </head>
 <body>
   <div class="jumbotron" style="background-image: url(../public/images/conversation02.jpg); border: pink solid 2px">
-    <div><h1><b>Welcome to Pub Hub</b></h1>
+    <div><h1 class="index-title"><b>Welcome to Pub Hub</b></h1>
     <h3>We're here to help you find the nearest outdoor space area near you!</h3>
   </div>
   </div>
@@ -30,52 +30,8 @@
 
   <!-- BEG pubHub container-->
   <div class="container" style="border: orange solid 2px; margin-bottom: 2rem">
-    <!-- BEG pubHub card -->
-    <div class="pubHub col-sm-6 col-sm-offset-1">
-      <div class="panel-body list-group-item" style="background-color: blue">
-
-        <!-- begin pubHub internal row -->
-        <div class="row">
-          <div class="col-sm-4 col-xs-12">
-            <img class="img-responsive" src="https://s-media-cache-ak0.pinimg.com/originals/70/19/9c/70199cc07f049680db4e1f84350a9095.jpg" style="width: 100%" />
-          </div>
-          <div class="col-sm-8 col-xs-12" style="color:black">
-            <ul class="list-group">
-              <li class="list-group-item">
-                <h5 class='inline-header'><b>Name: </b></h5>
-                <span>test</span>
-              </li>
-              <li class="list-group-item">
-                <h5><b>Street Address: </b></h5>
-                <span>test</span>
-              </li>
-              <li class="list-group-item">
-                <h5><b>Cross Street: </b></h5>
-                <span>test</span>
-              </li>
-              <li class="list-group-item">
-                <h5><b>Notes: </b></h5>
-                <p class="pubHub-notes">test</p>
-              </li>
-              <li class="list-group-item">
-                <h5><b>Reviews: </b></h5>
-                <p class="pubHub-reviews">test</p>
-              </li>
-            </ul>
-            <li class="list-group-item">
-              <button class='btn btn-info edit-pubHub tgl-btn' style="width: 125px">Edit Notes</button>
-              <!-- <button class='btn btn-success save-pubHub hidden' style="width: 125px">Save Changes</button> -->
-              <button class='btn btn-danger delete-pubHub' style="width: 125px">Delete</button>
-            </li>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end of pubHub internal row -->
-    <!-- end one pubHub -->
-
+    <div id="pubs"></div>
   </div>
-</div>
 <!-- END pubHub container-->
 
 <!-- BEGIN FORM SAMPLE -->
@@ -89,42 +45,43 @@
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="name"> Name</label>
+          <label class="col-md-4 control-label" for="name-pubhub">Name</label>
           <div class="col-md-4">
-            <input type="text" name="name"  placeholder="" class="form-control input-md" required="">
+            <input type="text" name="name-pubhub"  placeholder="" class="form-control input-md" required="">
           </div>
         </div>
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="location"> Location</label>
+          <label class="col-md-4 control-label" for="adress-pubHub">Street Address</label>
           <div class="col-md-4">
-            <input name="location" type="text" placeholder="City Name" class="form-control input-md">
+            <input name="adress-pubHub" type="text" class="form-control input-md">
           </div>
         </div>
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="website">Website</label>
+          <label class="col-md-4 control-label" for="gps">GPS Coordinates</label>
           <div class="col-md-4">
-            <input class="form-control input-md" name="website" placeholder="http://www.website_example.com">
+            <input class="form-control input-md" name="lat" placeholder="latituide-pubHub">
+            <input class="form-control input-md" name="long" placeholder="Longitude-pubHub">
           </div>
         </div>
         <!-- Textarea -->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="image">Image</label>
+          <label class="col-md-4 control-label" for="xStreet-pubHub">Cross Street</label>
           <div class="col-md-4">
-            <input class="form-control" name="image" placeholder="http://www.image_example.jpg">
+            <input class="form-control" name="image-pubHub" placeholder="http://www.image_example.jpg">
           </div>
         </div>
         <!-- Textarea -->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="imageBackground">Background Image</label>
+          <label class="col-md-4 control-label" for="photo-pubhub">Photo</label>
           <div class="col-md-4">
-            <input class="form-control" name="imageBackground" placeholder="http://www.image_example.com">
+            <input class="form-control" name="photo-pubHub" placeholder="http://www.image_example.com">
           </div>
         </div>
         <!-- Textarea -->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="notes">Notes</label>
+          <label class="col-md-4 control-label" for="notes-pubHub">Notes</label>
           <div class="col-md-4">
             <textarea class="form-control" name="notes" maxlength="60"></textarea>
           </div>
