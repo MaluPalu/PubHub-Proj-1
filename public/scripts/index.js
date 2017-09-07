@@ -53,10 +53,8 @@ $(document).ready(function() {
       renderPub(pubs[i]);
     }
   $('#edit-pubHub-modal').on("shown.bs.modal", function (e) {
-    console.log("hi");
-      // $("#edit-pubHub-modal").modal('show');
   });
-  $('.input-info').on("submit", function (e) {
+  $('#pubSubmit').on("submit", function (e) {
       console.log('save button clicked');
       var currentPubId = $(this).find('.pubHub').data('pub-id');
       handleUpdate(e, currentPubId, this);

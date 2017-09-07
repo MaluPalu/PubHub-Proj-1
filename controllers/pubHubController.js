@@ -60,6 +60,30 @@ function destroy(req, res) {
 
 
 function update(req, res) {
+  db.PubHub.findById(req.params.id, (err, foundPub) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    foundPub.set({
+      nameHub: req.body.nameHub,
+      streetAddress: req.body.streetAddress,
+      gpsCoords: {
+        lat: req.body.lat,
+        long: req.body.long
+      },
+      crossStreet: req.body.crossStreet,
+      photo: req.body.photo,
+      notes: req.body.notes
+    });
+    foundPub.save(function, err, updatePub) {
+      if (err) {
+        console.log(err);
+      }
+      console.log('Updated Pub', updatePub);
+      res.json(updatePub);
+    });
+  });
 };
 
 

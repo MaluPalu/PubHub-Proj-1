@@ -37,7 +37,7 @@ app.get('/api/pubHub', controllers.pubHub.index);
 
 app.post('/api/pubHub', controllers.pubHub.create);
 
-app.put('/api/pubHub', controllers.pubHub.update);
+app.put('/api/pubHub/:id', controllers.pubHub.update);
 
 app.delete('/api/pubHub/:id', controllers.pubHub.destroy);
 
