@@ -5,18 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pub Hub</title>
   <!-- STYLESHEETS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  <link rel="stylesheet" href="../public/styles/styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/styles/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Shadows+Into+Light" rel="stylesheet">
 
   <!-- VENDOR SCRIPTS -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
   <!-- APPLICATION SCRIPTS -->
-  <script src="/scripts/app.js"></script>
+  <script src="/scripts/index.js"></script>
 </head>
 <body>
-  <div class="jumbotron" style="background-image: url(../public/images/conversation02.jpg); border: pink solid 2px">
+<div id="edit-pubHub-modal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">Edit This PubHub</h4>
+			</div>
+			<form>
+			<div class="modal-body">
+				<div class="bold">
+					Name
+				</div>
+				<div class="margin-top-20">
+					<input name="nameHub" type="text" class="form-control" />
+				</div>
+				<div class="bold margin-top-20">
+					Street Address
+				</div>
+				<div class="margin-top-20">
+					<input name="streetAddress" type="text" class="form-control" />
+				</div>
+				<div class="bold margin-top-20">
+					GPS Coordinates
+				</div>
+				<div class="margin-top-20">
+					<input name="gpsCoords" type="text" class="form-control" />
+				</div>
+				<div class="bold margin-top-20">
+					Cross Street
+				</div>
+				<div class="margin-top-20">
+					<input name="crossStreet" type="text" class="form-control" />
+				</div>
+        <div class="bold margin-top-20">
+					Photo
+				</div>
+				<div class="margin-top-20">
+					<input name="photo" type="text" class="form-control" />
+				</div>
+        <div class="bold margin-top-20">
+          Notes
+        </div>
+        <div class="margin-top-20">
+          <input name="notes" type="text" class="form-control" />
+        </div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+				<button type="submit" class="btn btn-primary">Save User</button>
+			</div>
+		</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+  <div class="jumbotron" style="background-image: url(/images/conversation02.jpg); border: pink solid 2px">
     <div><h1 class="index-title"><b>Welcome to Pub Hub</b></h1>
     <h3>We're here to help you find the nearest outdoor space area near you!</h3>
   </div>
@@ -36,7 +94,7 @@
 
 
 <!-- BEGIN FORM SAMPLE -->
-<div class="container-fluid pubHub-container" style="background-image: url('../public/images/conversation01.jpg')">
+<div class="container-fluid pubHub-container" style="background-image: url('/images/conversation01.jpg')">
  <section id='pubHub-form' class="container">
 
    <form id="pubSubmit" class="form-horizontal">
@@ -44,61 +102,6 @@
        <!-- Form Name -->
        <legend><h3>Add a New Pub Hub</h3></legend>
 
-
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="name-pubhub">Name</label>
-          <div class="col-md-4">
-            <input type="text" name="name-pubhub"  placeholder="" class="form-control input-md" required="">
-          </div>
-        </div>
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="adress-pubHub">Street Address</label>
-          <div class="col-md-4">
-            <input name="adress-pubHub" type="text" class="form-control input-md">
-          </div>
-        </div>
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="gps">GPS Coordinates</label>
-          <div class="col-md-4">
-            <input class="form-control input-md" name="lat" placeholder="latituide-pubHub">
-            <input class="form-control input-md" name="long" placeholder="Longitude-pubHub">
-          </div>
-        </div>
-        <!-- Textarea -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="xStreet-pubHub">Cross Street</label>
-          <div class="col-md-4">
-            <input class="form-control" name="image-pubHub" placeholder="http://www.image_example.jpg">
-          </div>
-        </div>
-        <!-- Textarea -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="photo-pubhub">Photo</label>
-          <div class="col-md-4">
-            <input class="form-control" name="photo-pubHub" placeholder="http://www.image_example.com">
-          </div>
-        </div>
-        <!-- Textarea -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="notes-pubHub">Notes</label>
-          <div class="col-md-4">
-            <textarea class="form-control" name="notes" maxlength="60"></textarea>
-          </div>
-        </div>
-        <!-- Button -->
-        <div class="form-group">
-          <div class="col-md-4 control-label"></div>
-          <div class="col-md-4">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  </section>
-=======
        <!-- Text input-->
        <div class="form-group">
          <label class="col-md-4 control-label" for="nameHub">Name</label>
@@ -152,66 +155,9 @@
      </fieldset>
    </form>
  </section>
->>>>>>> master
 </div>
 <!--   END FORM SAMPLE -->
 
-<div id="edit-pubHub-modal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title">Add a User</h4>
-			</div>
-			<form>
-			<div class="modal-body">
-				<div class="bold">
-					Name
-				</div>
-				<div class="margin-top-20">
-					<input name="nameHub" type="text" class="form-control" />
-				</div>
-				<div class="bold margin-top-20">
-					Street Address
-				</div>
-				<div class="margin-top-20">
-					<input name="streetAddress" type="text" class="form-control" />
-				</div>
-				<div class="bold margin-top-20">
-					GPS Coordinates
-				</div>
-				<div class="margin-top-20">
-					<input name="gpsCoords" type="text" class="form-control" />
-				</div>
-				<div class="bold margin-top-20">
-					Cross Street
-				</div>
-				<div class="margin-top-20">
-					<input name="crossStreet" type="text" class="form-control" />
-				</div>
-        <div class="bold margin-top-20">
-					Photo
-				</div>
-				<div class="margin-top-20">
-					<input name="photo" type="text" class="form-control" />
-				</div>
-        <div class="bold margin-top-20">
-          Notes
-        </div>
-        <div class="margin-top-20">
-          <input name="notes" type="text" class="form-control" />
-        </div>
-
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-				<button type="submit" class="btn btn-primary">Save User</button>
-			</div>
-		</form>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 </body>
 </html>

@@ -1,4 +1,5 @@
 module.exports = {
   api: require('./apiController'),
-  pubHub: require('./pubHubController')
+  pubHub: require('./pubHubController'),
+  reviews: require('./reviewsController')
 }

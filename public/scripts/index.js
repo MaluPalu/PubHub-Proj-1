@@ -7,14 +7,23 @@ $(document).ready(function() {
     console.log($(form).serialize());
     $.ajax({
       method: "PUT",
-      url: '/api/cliffs/' + id,
+      url: '/api/pubHub/' + id,
       data: $(form).serialize(),
-      success: function() {
-        window.location = '/'
-      },
+      success: renderPubs,
       error: handleError
     })
   }
+  function handleDeletePub(e, id) {
+  e.preventDefault();
+  var currentDeleteId = $(this).closest('.pubHub').data('pub-id');
+  console.log(currentDeleteId);
+  $.ajax({
+    method: 'DELETE',
+    url: '/api/pubHub/' + id,
+    success: handleDeletedPub,
+    error: handleError
+  })
+}
   console.log('app.js loaded!');
   $.ajax({
     method: 'GET',
@@ -34,21 +43,43 @@ $(document).ready(function() {
       error: handleError
     })
   });
+  $.ajax({
+    method: 'GET',
+    url: '/api/reviews',
+    error: handleError
+  });
   function renderPubs(pubs) {
     for (let i = 0; i < pubs.length; i++) {
       renderPub(pubs[i]);
     }
-    initMap(pubs);
+  $('#edit-pubHub-modal').on("shown.bs.modal", function (e) {
+    console.log("hi");
+      // $("#edit-pubHub-modal").modal('show');
+  });
+  $('.input-info').on("submit", function (e) {
+      console.log('save button clicked');
+      var currentPubId = $(this).find('.pubHub').data('pub-id');
+      handleUpdate(e, currentPubId, this);
+  });
+  $('#pubs').on("click", '.deletePubHub', function (e) {
+    console.log('delete button clicked');
+    var currentPubId = $(this).closest('.pubHub').data('pub-id');
+    handleDeletePub(e, currentPubId);
+  });
+    // initMap(pubs);
   };
+ function handleDeletedPub(data) {
+   var deletedPubId = data._id;
+   $('div[data-pub-id=' + deletedPubId + ']').remove();
+ }
   function handleError(err){
     console.log('There has been an error: ', err);
   }
   function renderPub(pub) {
     var myPubs = (`
-      <div class="pubHub col-sm-6 col-sm-offset-1" data-pub-id="${pub._id}">
+      <div class="col-sm-6 col-sm-offset-1 pubHub" data-pub-id="${pub._id}">
         <div class="panel-body list-group-item" style="background-color: blue">
 
-          <!-- begin pubHub internal row -->
           <div class="row">
             <div class="col-sm-4 col-xs-12">
               <img class="img-responsive" src="${pub.photo}" style="width: 100%" />
@@ -69,20 +100,18 @@ $(document).ready(function() {
                 </li>
                 <li class="list-group-item">
                   <h5><b>Notes: </b></h5>
-                  <p class="pubHub-notes">${pub.notes}</p>
+                  <p class="Hub-notes">${pub.notes}</p>
                 </li>
               </ul>
               <li class="list-group-item">
-                <button class='btn btn-info edit-pubHub tgl-btn' style="width: 125px">Edit Notes</button>
-                <button class='btn btn-danger delete-pubHub' style="width: 125px">Delete</button>
-                <button class='btn btn-info review-pubHub' style="width: 125px">Reviews</button>
+                <button class='btn btn-info tgl-btn editPubHub' style="width: 125px" data-toggle="modal" data-target="#edit-pubHub-modal">Edit Notes</button>
+                <button class='btn btn-danger deletePubHub' style="width: 125px">Delete</button>
+                <button class='btn btn-info reviewPubHub' style="width: 125px"><a href="/reviews">Reviews</a></button>
               </li>
             </div>
           </div>
         </div>
       </div>
-      <!-- end of pubHub internal row -->
-      <!-- end one pubHub -->
 
     </div>`)
     $('#pubs').append(myPubs);

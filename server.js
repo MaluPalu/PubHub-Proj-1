@@ -7,10 +7,13 @@ var controllers = require('./controllers');
 app.set("view engine", "ejs");
 
 app.get('/api', controllers.api.index);
-
 // Create route for html to be shown
 app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
+});
+
+app.get('/reviews', function homepage(req, res) {
+  res.sendFile(__dirname + '/views/reviews.html');
 });
 
 app.use(express.static('public'));
@@ -33,6 +36,12 @@ app.use(function(req, res, next) {
 app.get('/api/pubHub', controllers.pubHub.index);
 
 app.post('/api/pubHub', controllers.pubHub.create);
+
+app.put('/api/pubHub', controllers.pubHub.update);
+
+app.delete('/api/pubHub/:id', controllers.pubHub.destroy);
+
+app.get('api/reviews', controllers.reviews.index1);
 
 
 app.listen(process.env.PORT || 4000, function () {
