@@ -66,15 +66,15 @@ function update(req, res) {
       return;
     }
     foundPub.set({
-      nameHub: req.body.nameHub,
-      streetAddress: req.body.streetAddress,
+      nameHub: req.body.nameHub || foundPub.nameHub,
+      streetAddress: req.body.streetAddress || foundPub.streetAddress,
       gpsCoords: {
         lat: req.body.lat,
         long: req.body.long
       },
-      crossStreet: req.body.crossStreet,
-      photo: req.body.photo,
-      notes: req.body.notes
+      crossStreet: req.body.crossStreet || foundPub.crossStreet,
+      photo: req.body.photo || foundPub.photo,
+      notes: req.body.notes || foundPub.notes
     });
     foundPub.save(function (err, updatePub) {
       if (err) {
