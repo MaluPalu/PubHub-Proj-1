@@ -1,33 +1,26 @@
 
 $(document).ready(function() {
 
-  function handleUpdate(e, id, form) {
-    e.preventDefault();
-    console.log(form);
-    console.log($(form).serialize());
-    $.ajax({
-      method: "PUT",
-      url: '/api/cliffs/' + id,
-      data: $(form).serialize(),
-      success: function() {
-        window.location = '/'
-      },
-      error: handleError
-    })
-  }
-  console.log('app.js loaded!');
-  $.ajax({
-    method: 'GET',
-    url: '/api/pubHub',
-    success: renderPub,
-    error: handleError
-  });
+  // function handleUpdate(e, id, form) {
+  //   e.preventDefault();
+  //   console.log(form);
+  //   console.log($(form).serialize());
+  //   $.ajax({
+  //     method: "PUT",
+  //     url: '/api/cliffs/' + id,
+  //     data: $(form).serialize(),
+  //     success: function() {
+  //       window.location = '/'
+  //     },
+  //     error: handleError
+  //   })
+  // }
 
   $.ajax({
     method: 'GET',
-    url: '/api/pubHub/reviews',
-    success: renderReviews,
-    error: handleError
+    url:'api/pubHub',
+    success: renderPubs,
+    error: handleError,
   });
 
   $('#pubSubmit').on("submit", function(event) {
@@ -43,6 +36,7 @@ $(document).ready(function() {
     })
   });
   function renderPubs(pubs) {
+    console.log(pubs);
     for (let i = 0; i < pubs.length; i++) {
       renderPub(pubs[i]);
     }

@@ -3,12 +3,12 @@ let db = require('../models');
 
 function index(req, res) {
   // send back all cliffs as JSON
-  db.PubHub.find(function(err, pubHubs){
-    if (err) {
-      console.log("index error" + err);
-      res.sendStatus(500);
-    }
-    res.send(pubHubs);
+  db.PubHub.find({}, function(err, allPubHubs){
+    // if (err) {
+    //   console.log("index error" + err);
+    //   res.sendStatus(500);
+    // }
+    res.json(allPubHubs);
   });
 }
 
