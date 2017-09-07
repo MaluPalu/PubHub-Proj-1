@@ -3,8 +3,12 @@ let db = require('../models');
 
 function index(req, res) {
   // send back all cliffs as JSON
-  db.PubHub.find({}, function(err, allPubHubs){
-    res.json(allPubHubs);
+  db.PubHub.find(function(err, pubHubs){
+    if (err) {
+      console.log("index error" + err);
+      res.sendStatus(500);
+    }
+    res.send(pubHubs);
   });
 }
 
@@ -20,7 +24,6 @@ function create(req, res) {
       long: req.body.long
     },
     photo: req.body.photo,
-    backgroundPhoto: req.body.backgroundPhoto,
     notes: req.body.notes
   });
   newPub.save(function(err, pub){
@@ -57,7 +60,7 @@ function destroy(req, res) {
 
 
 function update(req, res) {
-  db.PubHub.findById(req.params.id, (err, foundPub) {
+  db.PubHub.findById(req.params.id, function(err, foundPub) {
     if (err) {
       console.log(err);
       return;
@@ -73,14 +76,14 @@ function update(req, res) {
       photo: req.body.photo,
       notes: req.body.notes
     });
-    foundPub.save(function, err, updatePub) {
+    foundPub.save(function(err, updatePub) {
       if (err) {
         console.log(err);
       }
       console.log('Updated Pub', updatePub);
-      res.json(updatePub);
-    });
-  });
+      res.send(updatePub);
+  })
+});
 };
 
 

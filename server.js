@@ -16,10 +16,6 @@ app.get('/reviews', function homepage(req, res) {
   res.sendFile(__dirname + '/views/reviews.html');
 });
 
-app.get('/reviews', function homepage(req, res) {
-  res.sendFile(__dirname + '/views/reviews.html');
-});
-
 app.use(express.static('public'));
 // parse incoming urlencoded form data
 // and populate the req.body object
@@ -48,7 +44,9 @@ app.delete('/api/pubHub/:id', controllers.pubHub.destroy);
 //Look at this later
 app.get('api/reviews', controllers.reviews.index1);
 
-app.get('/api/pubHub/reviews', controllers.reviews.index);
+// app.put('api/reviews', controllers.reviews.)
+
+
 
 
 

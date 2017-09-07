@@ -2,14 +2,14 @@
 $(document).ready(function() {
 
   function handleUpdate(e, id, form) {
+    console.log("fs");
     e.preventDefault();
     console.log(form);
-    console.log($(form).serialize());
     $.ajax({
       method: "PUT",
       url: '/api/pubHub/' + id,
       data: $(form).serialize(),
-      success: renderPubs,
+      success: handleUpdatedPub,
       error: handleError
     })
   }
@@ -33,7 +33,7 @@ $(document).ready(function() {
     error: handleError,
   });
 
-  $('#pubSubmit').on("submit", function(event) {
+  $('#formSubmit').on("submit", function(event) {
     console.log('in singlebutton submit');
     event.preventDefault();
     console.log($(this).serialize());
@@ -60,9 +60,14 @@ $(document).ready(function() {
   });
   $('#pubSubmit').on("submit", function (e) {
       console.log('save button clicked');
-      var currentPubId = $(this).find('.pubHub').data('pub-id');
+      var currentPubId = $(this).closest('#edit-pubHub-modal').data('pubhub-id');
+      console.log(currentPubId);
       handleUpdate(e, currentPubId, this);
   });
+  $('.editPubHub').on("click", function (e) {
+    console.log("in button click", $(this).data('pubhub-id'));
+    $('#edit-pubHub-modal').data('pubhub-id', $(this).data('pubhub-id'));
+  })
   $('#pubs').on("click", '.deletePubHub', function (e) {
     console.log('delete button clicked');
     var currentPubId = $(this).closest('.pubHub').data('pub-id');
@@ -71,6 +76,17 @@ $(document).ready(function() {
 
     // initMap(pubs);
   };
+  function handleUpdatedPub(data) {
+    console.log("hi");
+    var updatedPubId = data._id;
+    var updatedDiv = $('div[data-pub-id=' + updatedPubId + ']');
+    console.log(updatedDiv);
+    updatedDiv.find('.pubName').html(data.nameHub);
+    updatedDiv.find('.pubStreet').html(data.streetAddress);
+    updatedDiv.find('.pubCross').html(data.crossStreet);
+    updatedDiv.find('.pubNotes').html(data.notes);
+    updatedDiv.find('.img-card').attr('src', data.photo);
+  }
  function handleDeletedPub(data) {
    var deletedPubId = data._id;
    $('div[data-pub-id=' + deletedPubId + ']').remove();
@@ -94,23 +110,23 @@ $(document).ready(function() {
               <ul class="list-group">
                 <li class="list-group-item">
                   <h5 class='inline-header'><b>Name: </b></h5>
-                  <span>${pub.nameHub}</span>
+                  <span class="pubName" >${pub.nameHub}</span>
                 </li>
                 <li class="list-group-item">
                   <h5><b>Street Address: </b></h5>
-                  <span>${pub.streetAddress}</span>
+                  <span class="pubAddress" >${pub.streetAddress}</span>
                 </li>
                 <li class="list-group-item">
                   <h5><b>Cross Street: </b></h5>
-                  <span>${pub.crossStreet}</span>
+                  <span class="pubCross" >${pub.crossStreet}</span>
                 </li>
                 <li class="list-group-item">
                   <h5><b>Notes: </b></h5>
-                  <p class="Hub-notes">${pub.notes}</p>
+                  <p class="pubNotes">${pub.notes}</p>
                 </li>
               </ul>
               <li class="list-group-item">
-                <button class='btn btn-info tgl-btn editPubHub' style="width: 125px" data-toggle="modal" data-target="#edit-pubHub-modal">Edit Notes</button>
+                <button class='btn btn-info tgl-btn editPubHub' data-pubhub-id="${pub._id}" style="width: 125px" data-toggle="modal" data-target="#edit-pubHub-modal">Edit Notes</button>
                 <button class='btn btn-danger deletePubHub' style="width: 125px">Delete</button>
                 <button class='btn btn-info reviewPubHub' style="width: 125px"><a href="/reviews">Reviews</a></button>
               </li>
