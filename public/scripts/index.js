@@ -45,11 +45,7 @@ $(document).ready(function() {
       error: handleError
     })
   });
-  $.ajax({
-    method: 'GET',
-    url: '/api/reviews',
-    error: handleError
-  });
+
   function renderPubs(pubs) {
     console.log(pubs);
     for (let i = 0; i < pubs.length; i++) {

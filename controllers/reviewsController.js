@@ -1,21 +1,9 @@
 let db = require('../models');
 
-function index1(req, res) {
-  // send back all cliffs as JSON
-  db.Reviews.find({}, function(err, reviews){
-    if (err) {
-      console.log("index error" + err);
-      res.sendStatus(500);
-    }
-    res.json(reviews);
-  });
-}
-
-
-
 function index(req, res) {
   // send back all cliffs as JSON
   db.Reviews.find({}, function(err, reviews){
+    console.log(reviews);
     res.json(reviews)
   });
 }
@@ -53,10 +41,9 @@ function retrieve(req, res) {
 
 
 module.exports = {
-  index1: index1,
   index: index,
-  create: create,
-  retrieve: retrieve,
+  // create: create,
+  // retrieve: retrieve,
   // destroy: destroy,
   // update: update
 };
