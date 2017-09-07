@@ -1,16 +1,12 @@
 let db = require('../models');
 
-function index1(req, res) {
+function index(req, res) {
   // send back all cliffs as JSON
-  db.Reviews.find(function(err, reviews){
-    if (err) {
-      console.log("index error" + err);
-      res.sendStatus(500);
-    }
-    res.send(reviews);
+  db.Reviews.find({}, function(err, reviews){
+    console.log(reviews);
+    res.json(reviews)
   });
 }
-
 
 // POST /api/pubHubs/reviews
 function create1(req, res) {
@@ -33,9 +29,9 @@ function create1(req, res) {
 
 
 module.exports = {
-  index1: index1,
-  create1: create1,
-  // retrieve1: retrieve1,
-  // destroy1: destroy1,
-  // update1: update1
+  index: index,
+  // create: create,
+  // retrieve: retrieve,
+  // destroy: destroy,
+  // update: update
 };

@@ -33,7 +33,7 @@ $(document).ready(function() {
     error: handleError,
   });
 
-  $('#formSubmit').on("submit", function(event) {
+  $('.createMe').on("submit", function(event) {
     console.log('in singlebutton submit');
     event.preventDefault();
     console.log($(this).serialize());
@@ -45,11 +45,7 @@ $(document).ready(function() {
       error: handleError
     })
   });
-  $.ajax({
-    method: 'GET',
-    url: '/api/reviews',
-    error: handleError
-  });
+
   function renderPubs(pubs) {
     console.log(pubs);
     for (let i = 0; i < pubs.length; i++) {
@@ -63,7 +59,11 @@ $(document).ready(function() {
       var currentPubId = $(this).closest('#edit-pubHub-modal').data('pubhub-id');
       console.log(currentPubId);
       handleUpdate(e, currentPubId, this);
+      $('#edit-pubHub-modal').modal('hide');
   });
+  $('#edit-pubHub-modal').on('hidden.bs.modal', function(){
+    $(this).find('#pubSubmit')[0].reset();
+});
   $('.editPubHub').on("click", function (e) {
     console.log("in button click", $(this).data('pubhub-id'));
     $('#edit-pubHub-modal').data('pubhub-id', $(this).data('pubhub-id'));
@@ -82,10 +82,10 @@ $(document).ready(function() {
     var updatedDiv = $('div[data-pub-id=' + updatedPubId + ']');
     console.log(updatedDiv);
     updatedDiv.find('.pubName').html(data.nameHub);
-    updatedDiv.find('.pubStreet').html(data.streetAddress);
+    updatedDiv.find('.pubAddress').html(data.streetAddress);
     updatedDiv.find('.pubCross').html(data.crossStreet);
     updatedDiv.find('.pubNotes').html(data.notes);
-    updatedDiv.find('.img-card').attr('src', data.photo);
+    updatedDiv.find('#bckImg').css('background-image', 'url(' + data.photo+ ')');
   }
  function handleDeletedPub(data) {
    var deletedPubId = data._id;
@@ -97,20 +97,15 @@ $(document).ready(function() {
   function renderPub(pub) {
     var myPubs = (`
       <div class="pubHub col-sm-6" data-pub-id="${pub._id}">
-        <div class="panel-body list-group-item" style="background-image: url(${pub.photo}); background-repeat: no-repeat; background-size: 100% 100%">
+        <div id="bckImg" class="panel-body list-group-item" style="background-image: url('${pub.photo}'); background-repeat: no-repeat; background-size: 100% 100%">
 
           <!-- begin pubHub internal row -->
-          <div class="row" style="margin-bottom: 15px;">
-            <div class="col-sm-12 col-xs-12">
-              <img class="img-responsive img-card" src="${pub.photo}" />
-            </div>
-            </div>
             <div class="row>"
             <div class="col-sm-8 col-xs-12" style="color:black">
               <ul class="list-group">
                 <li class="list-group-item">
                   <h5 class='inline-header'><b>Name: </b></h5>
-                  <span class="pubName" >${pub.nameHub}</span>
+                  <span class="pubName">${pub.nameHub}</span>
                 </li>
                 <li class="list-group-item">
                   <h5><b>Street Address: </b></h5>

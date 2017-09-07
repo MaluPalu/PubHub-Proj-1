@@ -41,14 +41,7 @@ app.put('/api/pubHub/:id', controllers.pubHub.update);
 
 app.delete('/api/pubHub/:id', controllers.pubHub.destroy);
 
-//Look at this later
-app.get('api/reviews', controllers.reviews.index1);
-
-// app.put('api/reviews', controllers.reviews.)
-
-
-
-
+app.get('/api/reviews', controllers.reviews.index);
 
 app.listen(process.env.PORT || 4000, function () {
   console.log('Express server is up and running on http://localhost:4000');

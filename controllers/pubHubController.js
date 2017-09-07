@@ -60,7 +60,7 @@ function destroy(req, res) {
 
 
 function update(req, res) {
-  db.PubHub.findById(req.params.id, function(err, foundPub) {
+  db.PubHub.findById(req.params.id, function (err, foundPub) {
     if (err) {
       console.log(err);
       return;
@@ -76,7 +76,7 @@ function update(req, res) {
       photo: req.body.photo,
       notes: req.body.notes
     });
-    foundPub.save(function(err, updatePub) {
+    foundPub.save(function (err, updatePub) {
       if (err) {
         console.log(err);
       }
