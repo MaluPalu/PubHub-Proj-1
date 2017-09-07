@@ -15,7 +15,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <!-- APPLICATION SCRIPTS -->
+
     <script src="/scripts/reviews.js"></script>
+    <script src="/scripts/appReviews.js"></script>
+
   </head>
   <body>
     <div class="container reviews-header">
@@ -33,23 +36,23 @@
 
             <!-- Text input-->
             <div class="form-group col-centered">
-              <label class="col-sm-4 control-label" for="name-of-reviewer">Your Name</label>
+              <label class="col-sm-4 control-label" for="reviewerName">Your Name</label>
               <div class="col-md-4">
-                <input name="name-review" type="text" class="form-control input-md" required="">
+                <input name="reviewerName" type="text" class="form-control input-md" required="">
               </div>
             </div>
             <!-- Text input-->
             <div class="form-group">
-              <label class="col-sm-4 control-label" for="rating-review">Ratinng</label>
+              <label class="col-sm-4 control-label" for="reviewerRating">Ratinng</label>
               <div class="col-sm-4">
-                <input name="rating-review" type="text" placeholder="1 to 5 stars" class="form-control input-md" required="">
+                <input name="reviewerRating" type="text" placeholder="1 to 5 stars" class="form-control input-md" required="">
               </div>
             </div>
             <!-- Text input-->
             <div class="form-group">
-              <label class="col-sm-4 control-label" for="notes-review">Notes</label>
+              <label class="col-sm-4 control-label" for="reviewerNotes">Notes</label>
               <div class="col-md-4">
-                <textarea class="form-control input-md" name="notes-review" required="" maxlength="120"
+                <textarea class="form-control input-md" name="reviewerNotes" required="" maxlength="120"
                 placeholder="Max length is 120 characters"></textarea>
               </div>
             </div>
@@ -74,27 +77,9 @@
     <div class="container">
       <!-- BEG review form -->
       <div id="review-form">
-      <div class="row" style="margin-bottom: 15px;">
-        <div class="col-sm-6">
-          <h4><b>Name will go here</b></h4>
-        </div>
-        <div class="col-sm-6" style="text-align: right">
-          <span><h4><b>Rating will go here ☆☆☆☆☆</b></h4></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <h4><b>Review:</b></h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <p>"Review will go here"</p>
-      </div>
+
     </div>
   </div>
-      <!-- END review form -->
-    </div>
     <!-- END review container -->
 
   </body>

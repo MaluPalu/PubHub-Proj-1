@@ -11,6 +11,10 @@ app.get('/api', controllers.api.index);
 app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
+//Create a route for reviews to be shown
+app.get('/reviews', function homepage(req, res) {
+  res.sendFile(__dirname + '/views/reviews.html');
+});
 
 app.get('/reviews', function homepage(req, res) {
   res.sendFile(__dirname + '/views/reviews.html');
@@ -41,7 +45,11 @@ app.put('/api/pubHub/:id', controllers.pubHub.update);
 
 app.delete('/api/pubHub/:id', controllers.pubHub.destroy);
 
+//Look at this later
 app.get('api/reviews', controllers.reviews.index1);
+
+app.get('/api/pubHub/reviews', controllers.reviews.index);
+
 
 
 app.listen(process.env.PORT || 4000, function () {

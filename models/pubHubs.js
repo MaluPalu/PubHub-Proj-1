@@ -4,13 +4,13 @@ var mongoose = require('mongoose'),
 var PubHubSchema = new Schema({
   nameHub: String,
   streetAddress: String,
+  crossStreet: String,
   gpsCoords: {
     lat: Number,
-    long: Number
+    long: Number,
   },
-  crossStreet: String,
   photo: String,
-  notes: String
+  notes: String,
 });
 
 var PubHub = mongoose.model('PubHub', PubHubSchema);

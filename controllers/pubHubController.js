@@ -3,12 +3,8 @@ let db = require('../models');
 
 function index(req, res) {
   // send back all cliffs as JSON
-  db.PubHub.find(function(err, pubHubs){
-    if (err) {
-      console.log("index error" + err);
-      res.sendStatus(500);
-    }
-    res.send(pubHubs);
+  db.PubHub.find({}, function(err, allPubHubs){
+    res.json(allPubHubs);
   });
 }
 
@@ -24,6 +20,7 @@ function create(req, res) {
       long: req.body.long
     },
     photo: req.body.photo,
+    backgroundPhoto: req.body.backgroundPhoto,
     notes: req.body.notes
   });
   newPub.save(function(err, pub){

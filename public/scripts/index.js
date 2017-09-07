@@ -25,12 +25,14 @@ $(document).ready(function() {
   })
 }
   console.log('app.js loaded!');
+
   $.ajax({
     method: 'GET',
-    url: '/api/pubHub',
+    url:'api/pubHub',
     success: renderPubs,
-    error: handleError
+    error: handleError,
   });
+
   $('#pubSubmit').on("submit", function(event) {
     console.log('in singlebutton submit');
     event.preventDefault();
@@ -49,9 +51,11 @@ $(document).ready(function() {
     error: handleError
   });
   function renderPubs(pubs) {
+    console.log(pubs);
     for (let i = 0; i < pubs.length; i++) {
       renderPub(pubs[i]);
     }
+
   $('#edit-pubHub-modal').on("shown.bs.modal", function (e) {
   });
   $('#pubSubmit').on("submit", function (e) {
@@ -64,6 +68,7 @@ $(document).ready(function() {
     var currentPubId = $(this).closest('.pubHub').data('pub-id');
     handleDeletePub(e, currentPubId);
   });
+
     // initMap(pubs);
   };
  function handleDeletedPub(data) {
@@ -75,13 +80,16 @@ $(document).ready(function() {
   }
   function renderPub(pub) {
     var myPubs = (`
-      <div class="col-sm-6 col-sm-offset-1 pubHub" data-pub-id="${pub._id}">
-        <div class="panel-body list-group-item" style="background-color: blue">
+      <div class="pubHub col-sm-6" data-pub-id="${pub._id}">
+        <div class="panel-body list-group-item" style="background-image: url(${pub.photo}); background-repeat: no-repeat; background-size: 100% 100%">
 
-          <div class="row">
-            <div class="col-sm-4 col-xs-12">
-              <img class="img-responsive" src="${pub.photo}" style="width: 100%" />
+          <!-- begin pubHub internal row -->
+          <div class="row" style="margin-bottom: 15px;">
+            <div class="col-sm-12 col-xs-12">
+              <img class="img-responsive img-card" src="${pub.photo}" />
             </div>
+            </div>
+            <div class="row>"
             <div class="col-sm-8 col-xs-12" style="color:black">
               <ul class="list-group">
                 <li class="list-group-item">
@@ -106,6 +114,7 @@ $(document).ready(function() {
                 <button class='btn btn-danger deletePubHub' style="width: 125px">Delete</button>
                 <button class='btn btn-info reviewPubHub' style="width: 125px"><a href="/reviews">Reviews</a></button>
               </li>
+            </div>
             </div>
           </div>
         </div>

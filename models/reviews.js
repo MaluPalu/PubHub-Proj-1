@@ -2,10 +2,10 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var ReviewsSchema = new Schema({
-  nameReviewer: String,
-  rating: String,
-  review: String,
-  PubHub: String
+  pubHubName: String,
+  reviewerName: String,
+  reviewerRating: String,
+  reviewerNotes: String,
 });
 
 var Reviews = mongoose.model('Reviews', ReviewsSchema);
