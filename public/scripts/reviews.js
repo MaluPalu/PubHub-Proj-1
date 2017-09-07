@@ -24,24 +24,24 @@ function renderReviews(reviews) {
 //Step 1a, part 3 of 3:
 function renderReview(review) {
   var reviewHtml = (`<div class="row" data-review-id="${review._id}" style="margin-bottom: 15px;">
-    <div class="col-sm-6">
-      <h4><b>${review.reviewerName}</b></h4>
-    </div>
-    <div class="col-sm-6" style="text-align: right">
-      <span><h4><b>${review.reviewerRating} Stars</b></h4></span>
+  <div class="col-sm-6">
+  <h4><b>${review.reviewerName}</b></h4>
   </div>
-</div>
-<div class="row">
+  <div class="col-sm-6" style="text-align: right">
+  <span><h4><b>${review.reviewerRating} Stars</b></h4></span>
+  </div>
+  </div>
+  <div class="row">
   <div class="col-sm-12">
-    <h4><b>Review:</b></h4>
+  <h4><b>Review:</b></h4>
   </div>
-</div>
-<div class="row">
+  </div>
+  <div class="row">
   <div class="col-sm-12">
-    <p>${review.reviewerNotes}</p>
+  <p>${review.reviewerNotes}</p>
   </div>
-</div>
-</div>
+  </div>
+  </div>
   <!-- END review form -->`);
   $("#review-form").prepend(reviewHtml);
 }

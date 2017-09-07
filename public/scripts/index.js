@@ -1,10 +1,8 @@
 
 $(document).ready(function() {
-
+  //Runs PUT request 
   function handleUpdate(e, id, form) {
-    console.log("fs");
     e.preventDefault();
-    console.log(form);
     $.ajax({
       method: "PUT",
       url: '/api/pubHub/' + id,
@@ -13,6 +11,7 @@ $(document).ready(function() {
       error: handleError
     })
   }
+  //
   function handleDeletePub(e, id) {
     e.preventDefault();
     var currentDeleteId = $(this).closest('.pubHub').data('pub-id');
@@ -24,17 +23,15 @@ $(document).ready(function() {
       error: handleError
     })
   }
-  console.log('app.js loaded!');
-
+    //
   $.ajax({
     method: 'GET',
     url:'api/pubHub',
     success: renderPubs,
     error: handleError,
   });
-
+    //
   $('.createMe').on("submit", function(event) {
-    console.log('in singlebutton submit');
     event.preventDefault();
     console.log($(this).serialize());
     $.ajax({
@@ -45,59 +42,55 @@ $(document).ready(function() {
       error: handleError
     })
   });
-
+    //
   function renderPubs(pubs) {
     console.log(pubs);
     for (let i = 0; i < pubs.length; i++) {
       renderPub(pubs[i]);
     }
-
+    //
     $('#edit-pubHub-modal').on("shown.bs.modal", function (e) {
     });
+    //
     $('#pubSubmit').on("submit", function (e) {
-      console.log('save button clicked');
       var currentPubId = $('#edit-pubHub-modal').data('pubhub-id');
-      console.log(currentPubId, "CURRENT PUB ID");
       handleUpdate(e, currentPubId, this);
       $('#edit-pubHub-modal').modal('hide');
     });
+    //
     $('#edit-pubHub-modal').on('hidden.bs.modal', function(){
       $(this).find('#pubSubmit')[0].reset();
     });
+    //
     $(document).on("click", ".editPubHub", function (e) {
-      console.log("in button click", $(this).data('pubhub-id'));
       $('#edit-pubHub-modal').data('pubhub-id', $(this).data('pubhub-id'));
     })
     $('#pubs').on("click", '.deletePubHub', function (e) {
-      console.log('delete button clicked');
       var currentPubId = $(this).closest('.pubHub').data('pub-id');
       handleDeletePub(e, currentPubId);
     });
-
     // initMap(pubs);
   };
-
+    //Finds
   function handleUpdatedPub(data) {
-    console.log(data, "DATA");
-
-    console.log("hi");
     var updatedPubId = data._id;
     var updatedDiv = $('div[data-pub-id=' + updatedPubId + ']');
-    console.log(updatedDiv, "UPDATED DIV");
     updatedDiv.find('.pubName').html(data.nameHub);
     updatedDiv.find('.pubAddress').html(data.streetAddress);
     updatedDiv.find('.pubCross').html(data.crossStreet);
     updatedDiv.find('.pubNotes').html(data.notes);
     updatedDiv.find('#bckImg').css('background-image', 'url(' + data.photo+ ')');
   }
-
+    //
   function handleDeletedPub(data) {
     var deletedPubId = data._id;
     $('div[data-pub-id=' + deletedPubId + ']').remove();
   }
+    //
   function handleError(err){
     console.log('There has been an error: ', err);
   }
+    //
   function renderPub(pub) {
     var myPubs = (`
       <div class="pubHub col-sm-6" data-pub-id="${pub._id}">
@@ -138,5 +131,4 @@ $(document).ready(function() {
       </div>`)
       $('#pubs').append(myPubs);
     };
-
   });
