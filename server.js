@@ -12,6 +12,10 @@ app.get('/api', controllers.api.index);
 app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
+//Create a route for reviews to be shown
+app.get('/reviews', function homepage(req, res) {
+  res.sendFile(__dirname + '/views/reviews.html');
+});
 
 app.use(express.static('public'));
 // parse incoming urlencoded form data
