@@ -34,6 +34,8 @@ app.get('/api/pubHub', controllers.pubHub.index);
 
 app.post('/api/pubHub', controllers.pubHub.create);
 
+app.get('/api/pubHub/reviews', controllers.reviews.index);
+
 
 app.listen(process.env.PORT || 4000, function () {
   console.log('Express server is up and running on http://localhost:4000');

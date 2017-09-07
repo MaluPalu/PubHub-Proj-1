@@ -19,9 +19,17 @@ $(document).ready(function() {
   $.ajax({
     method: 'GET',
     url: '/api/pubHub',
-    success: renderPubs,
+    success: renderPub,
     error: handleError
   });
+
+  $.ajax({
+    method: 'GET',
+    url: '/api/pubHub/reviews',
+    success: renderReviews,
+    error: handleError
+  });
+
   $('#pubSubmit').on("submit", function(event) {
     console.log('in singlebutton submit');
     event.preventDefault();
