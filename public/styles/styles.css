@@ -46,10 +46,15 @@ h3 {
 }
 /*END map container*/
 
-/*BEG PubHub Form*/
+/*BEG PubHub Form Card*/
+.img-card {
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+
 .list-group-item {
   background-color: rgba(255, 255, 255, 0.5);
-  line-height: 15px;
   padding: .6rem 1rem;
 }
 .container  {
@@ -61,7 +66,7 @@ h3 {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-/*End pubHub Form*/
+/*End pubHub Form Card*/
 
 /*BEG review Form*/
 #review-form {

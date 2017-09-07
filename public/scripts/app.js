@@ -47,14 +47,16 @@ $(document).ready(function() {
   }
   function renderPub(pub) {
     var myPubs = (`
-      <div class="pubHub col-sm-6 col-sm-offset-1" data-pub-id="${pub._id}">
-        <div class="panel-body list-group-item" style="background-color: blue">
+      <div class="pubHub col-sm-6" data-pub-id="${pub._id}">
+        <div class="panel-body list-group-item" style="background-image: url(${pub.photo}); background-repeat: no-repeat; background-size: 100% 100%">
 
           <!-- begin pubHub internal row -->
-          <div class="row">
-            <div class="col-sm-4 col-xs-12">
-              <img class="img-responsive" src="${pub.photo}" style="width: 100%" />
+          <div class="row" style="margin-bottom: 15px;">
+            <div class="col-sm-12 col-xs-12">
+              <img class="img-responsive img-card" src="${pub.photo}" />
             </div>
+            </div>
+            <div class="row>"
             <div class="col-sm-8 col-xs-12" style="color:black">
               <ul class="list-group">
                 <li class="list-group-item">
@@ -79,6 +81,7 @@ $(document).ready(function() {
                 <button class='btn btn-danger delete-pubHub' style="width: 125px">Delete</button>
                 <button class='btn btn-info review-pubHub' style="width: 125px">Reviews</button>
               </li>
+            </div>
             </div>
           </div>
         </div>

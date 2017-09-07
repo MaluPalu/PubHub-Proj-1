@@ -20,6 +20,7 @@ function create(req, res) {
       long: req.body.long
     },
     photo: req.body.photo,
+    backgroundPhoto: req.body.backgroundPhoto,
     notes: req.body.notes
   });
   newPub.save(function(err, pub){
