@@ -46,16 +46,16 @@ function destroy(req, res) {
     if (err) {
       console.log(err);
     }
-    // PubHub.save(function(err, pubHub) {
-    //   if (err) {
-    //     console.log(err);
-    //   }
-    //   let response = {
-    //       message: "PubHub successfully deleted",
-    // }
+    PubHub.save(function(err, pubHub) {
+      if (err) {
+        console.log(err);
+      }
+      let response = {
+          message: "PubHub successfully deleted",
+    }
     res.status(200).send(PubHub);
   });
-// });
+});
 };
 
 

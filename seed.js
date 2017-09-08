@@ -44,6 +44,11 @@ reviewList.push({
   reviewerName: "Tracy Montgomery",
   reviewerRating: "5",
   reviewerNotes: "This place is great!",
+}, {
+  pubHubName: "St Mary’s Square",
+  reviewerName: "Jen Warner",
+  reviewerRating: "5",
+  reviewerNotes: "This place is tidy!",
 });
 
 //Step 2, 2 of 2

@@ -2,7 +2,10 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var ReviewsSchema = new Schema({
-  pubHubName: String,
+  pubHub: {
+    type: Schema.Types.ObjectId,
+    ref: 'PubHub'
+  },
   reviewerName: String,
   reviewerRating: String,
   reviewerNotes: String,

@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-  //Runs PUT request 
+  //The AJAX call that UPDATES the object in the API from selected pubhub form
   function handleUpdate(e, id, form) {
     e.preventDefault();
     $.ajax({
@@ -11,7 +11,7 @@ $(document).ready(function() {
       error: handleError
     })
   }
-  //
+  //The AJAX call that DELETES any object in the API that is selected
   function handleDeletePub(e, id) {
     e.preventDefault();
     var currentDeleteId = $(this).closest('.pubHub').data('pub-id');
@@ -19,19 +19,19 @@ $(document).ready(function() {
     $.ajax({
       method: 'DELETE',
       url: '/api/pubHub/' + id,
-      success: handleDeletedPub,
+      success: handleUpdatedPub,
       error: handleError
     })
   }
-    //
+  //The AJAX call to the API that GETS and of the objects in the API and on success renders them to the page
   $.ajax({
     method: 'GET',
     url:'api/pubHub',
     success: renderPubs,
     error: handleError,
   });
-    //
-  $('.createMe').on("submit", function(event) {
+  //The AJAX call to the API that POST to the API
+  $('.createPubHub').on("submit", function(event) {
     event.preventDefault();
     console.log($(this).serialize());
     $.ajax({
@@ -42,55 +42,53 @@ $(document).ready(function() {
       error: handleError
     })
   });
-    //
+  //Renders all pubs from the database and when renderPub is called will append another pub
   function renderPubs(pubs) {
     console.log(pubs);
     for (let i = 0; i < pubs.length; i++) {
       renderPub(pubs[i]);
     }
-    //
-    $('#edit-pubHub-modal').on("shown.bs.modal", function (e) {
-    });
-    //
+
+    //Submits modal form and updates the rendered pubHub with whatever got changed then hides the modal
     $('#pubSubmit').on("submit", function (e) {
       var currentPubId = $('#edit-pubHub-modal').data('pubhub-id');
       handleUpdate(e, currentPubId, this);
       $('#edit-pubHub-modal').modal('hide');
     });
-    //
+    //Allows modal to reset the last things you inputed in previous modal
     $('#edit-pubHub-modal').on('hidden.bs.modal', function(){
       $(this).find('#pubSubmit')[0].reset();
     });
-    //
-    $(document).on("click", ".editPubHub", function (e) {
-      $('#edit-pubHub-modal').data('pubhub-id', $(this).data('pubhub-id'));
-    })
+
     $('#pubs').on("click", '.deletePubHub', function (e) {
       var currentPubId = $(this).closest('.pubHub').data('pub-id');
       handleDeletePub(e, currentPubId);
     });
     // initMap(pubs);
   };
-    //Finds
+
   function handleUpdatedPub(data) {
+    //Sets the object PubHum recieved from the database to ._id
     var updatedPubId = data._id;
+    //Selects the div with the attr data-pub-id and sets that attribute to data._id
     var updatedDiv = $('div[data-pub-id=' + updatedPubId + ']');
+    //Find the descendants of currently selected div and changes the html within those
     updatedDiv.find('.pubName').html(data.nameHub);
     updatedDiv.find('.pubAddress').html(data.streetAddress);
     updatedDiv.find('.pubCross').html(data.crossStreet);
     updatedDiv.find('.pubNotes').html(data.notes);
     updatedDiv.find('#bckImg').css('background-image', 'url(' + data.photo+ ')');
   }
-    //
+  //
   function handleDeletedPub(data) {
     var deletedPubId = data._id;
     $('div[data-pub-id=' + deletedPubId + ']').remove();
   }
-    //
+  //
   function handleError(err){
     console.log('There has been an error: ', err);
   }
-    //
+  //
   function renderPub(pub) {
     var myPubs = (`
       <div class="pubHub col-sm-6" data-pub-id="${pub._id}">
@@ -118,9 +116,10 @@ $(document).ready(function() {
       </li>
       </ul>
       <li class="list-group-item">
+      <!--This button has an id so that the modal knows which pubHub it works with-->
       <button class='btn btn-info tgl-btn editPubHub' data-pubhub-id="${pub._id}" style="width: 125px" data-toggle="modal" data-target="#edit-pubHub-modal">Edit Notes</button>
       <button class='btn btn-danger deletePubHub' style="width: 125px">Delete</button>
-      <button class='btn btn-info reviewPubHub' style="width: 125px"><a href="/reviews">Reviews</a></button>
+      <button class='btn btn-info reviewPubHub' style="width: 125px"><a href="/reviews/${pub._id}">Reviews</a></button>
       </li>
       </div>
       </div>
@@ -130,5 +129,9 @@ $(document).ready(function() {
 
       </div>`)
       $('#pubs').append(myPubs);
+      //Tell the modal which pubhub-id we are working with
+      $('#pubs').find('.editPubHub').last().on("click", function (e) {
+        $('#edit-pubHub-modal').data('pubhub-id', $(this).data('pubhub-id'));
+      })
     };
   });
