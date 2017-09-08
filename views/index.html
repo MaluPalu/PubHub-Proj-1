@@ -14,6 +14,9 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+  <!-- Google Maps API -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"></script>
+
   <!-- APPLICATION SCRIPTS -->
   <script src="/scripts/index.js"></script>
   <script src="/scripts/reviews.js"></script>
@@ -75,16 +78,18 @@
 </div><!-- /.modal -->
 
 <!--Description-->
-  <div class="jumbotron" style="background-image: url(/images/conversation02.jpg); border: pink solid 2px">
+  <div class="jumbotron" style="background-image: url(/images/conversation02.jpg);">
     <div><h1 class="index-title"><b>Welcome to Pub Hub</b></h1>
     <h3>We're here to help you find the nearest outdoor space area near you!</h3>
   </div>
   </div>
-  <div class="container description" style="border: red solid 2px">
+  <div class="container description">
     <p>This site features the nearest Privately Owned Public Outdoor Space within San Francisco. Use the map below to deternine where the nearest location is for you and check out the information about the locations below the map. Feel free to add any locations at the bottom of the page. Reviews for each Pub Hub are welcomed and encouraged!</p>
   </div>
-  <div class="container map-container" style="background-image: url(http://baycityguide.com/media/00PU000000FZF3IMAX/San-Francisco-Bay-Area-Map-518x301.jpg)">
-    <p>Insert Map here</p>
+  <div class="container map-container">
+    <!-- BEG map -->
+    <div id="map"></div>
+    <!-- END map -->
   </div>
 
   <!-- BEG pubHub container-->
@@ -95,7 +100,7 @@
 
 
 <!-- BEGIN FORM SAMPLE -->
-<div class="row" style="border: green solid 2px;">
+<div class="row">
 <div class="container-fluid pubHub-container" style="background-image: url('/images/conversation01.jpg')">
  <section id='pubHub-form' class="container">
    <form id="formSubmit" class="form-horizontal createMe">
@@ -113,29 +118,29 @@
      <div class="form-group">
        <label class="col-md-4 control-label" for="streetAddress">Street Address</label>
        <div class="col-md-4">
-         <input name="streetAddress" type="text" class="form-control input-md">
-       </div>
-     </div>
-     <!-- Text input-->
-     <div class="form-group">
-       <label class="col-md-4 control-label" for="gps">GPS Coordinates</label>
-       <div class="col-md-4">
-         <input class="form-control input-md" name="lat" placeholder="latituide-pubHub">
-         <input class="form-control input-md" name="long" placeholder="Longitude-pubHub">
+         <input name="streetAddress" type="text" class="form-control input-md" required="">
        </div>
      </div>
      <!-- Textarea -->
      <div class="form-group">
        <label class="col-md-4 control-label" for="crossStreet">Cross Street</label>
        <div class="col-md-4">
-         <input class="form-control" name="crossStreet" placeholder="http://www.image_example.jpg">
+         <input class="form-control" name="crossStreet">
+       </div>
+     </div>
+     <!-- Text input-->
+     <div class="form-group">
+       <label class="col-md-4 control-label" for="gps">GPS Coordinates</label>
+       <div class="col-md-4">
+         <input class="form-control input-md" name="lat" placeholder="latituide" required="" type="number" min="30" max="50">
+         <input class="form-control input-md" name="long" placeholder="Longitude" required="" type="number" min="-140" max="-100">
        </div>
      </div>
      <!-- Textarea -->
      <div class="form-group">
        <label class="col-md-4 control-label" for="photo">Photo</label>
        <div class="col-md-4">
-         <input class="form-control" name="photo" placeholder="http://www.image_example.com">
+         <input type="url" class="form-control" name="photo" placeholder="http://www.image_example.com"required="">
        </div>
      </div>
      <!-- Textarea -->
@@ -148,7 +153,7 @@
        <div class="form-group">
          <div class="col-md-4 control-label"></div>
          <div class="col-md-4">
-           <button type="submit" class="btn btn-primary save-changes">Save Changes</button>
+           <button type="submit" class="btn btn-primary save-changes">Submit</button>
          </div>
        </div>
      </fieldset>

@@ -1,6 +1,18 @@
 
 $(document).ready(function() {
-  //Runs PUT request 
+
+  // Set up object to hold marker references
+  var markers = {};
+
+  //BEGIN maps
+  // function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 37.78, lng: -122.44},
+    zoom: 13,
+  });
+  //END maps
+
+  //Runs PUT request
   function handleUpdate(e, id, form) {
     e.preventDefault();
     $.ajax({
@@ -11,6 +23,7 @@ $(document).ready(function() {
       error: handleError
     })
   }
+
   //
   function handleDeletePub(e, id) {
     e.preventDefault();
@@ -23,14 +36,14 @@ $(document).ready(function() {
       error: handleError
     })
   }
-    //
+  //
   $.ajax({
     method: 'GET',
     url:'api/pubHub',
     success: renderPubs,
     error: handleError,
   });
-    //
+  //
   $('.createMe').on("submit", function(event) {
     event.preventDefault();
     console.log($(this).serialize());
@@ -40,9 +53,10 @@ $(document).ready(function() {
       data: $(this).serialize(),
       success: renderPub,
       error: handleError
-    })
+    });
+    $(this).trigger("reset");
   });
-    //
+  //
   function renderPubs(pubs) {
     console.log(pubs);
     for (let i = 0; i < pubs.length; i++) {
@@ -71,7 +85,7 @@ $(document).ready(function() {
     });
     // initMap(pubs);
   };
-    //Finds
+  //Finds
   function handleUpdatedPub(data) {
     var updatedPubId = data._id;
     var updatedDiv = $('div[data-pub-id=' + updatedPubId + ']');
@@ -81,19 +95,33 @@ $(document).ready(function() {
     updatedDiv.find('.pubNotes').html(data.notes);
     updatedDiv.find('#bckImg').css('background-image', 'url(' + data.photo+ ')');
   }
-    //
+  //
   function handleDeletedPub(data) {
+    // Retrieve marker reference from "markers" object and remove as per Google docs
+    markers[data._id].setMap(null);
+
     var deletedPubId = data._id;
     $('div[data-pub-id=' + deletedPubId + ']').remove();
   }
-    //
+  //
   function handleError(err){
     console.log('There has been an error: ', err);
   }
-    //
+  //
   function renderPub(pub) {
+    var marker = new google.maps.Marker({
+      position: {
+        lat: pub.gpsCoords.lat,
+        lng: pub.gpsCoords.long,
+      },
+      map: map
+    });
+
+    // Store reference to specific marker in "markers" object
+    markers[pub._id] = marker;
+
     var myPubs = (`
-      <div class="pubHub col-sm-6" data-pub-id="${pub._id}">
+      <div class="pubHub col-sm-6" data-pub-id="${pub._id}" style="padding: 15px; min-height: 300px">
       <div id="bckImg" class="panel-body list-group-item" style="background-image: url('${pub.photo}'); background-repeat: no-repeat; background-size: 100% 100%">
 
       <!-- begin pubHub internal row -->
@@ -118,9 +146,11 @@ $(document).ready(function() {
       </li>
       </ul>
       <li class="list-group-item">
-      <button class='btn btn-info tgl-btn editPubHub' data-pubhub-id="${pub._id}" style="width: 125px" data-toggle="modal" data-target="#edit-pubHub-modal">Edit Notes</button>
-      <button class='btn btn-danger deletePubHub' style="width: 125px">Delete</button>
-      <button class='btn btn-info reviewPubHub' style="width: 125px"><a href="/reviews">Reviews</a></button>
+      <button class='btn btn-info tgl-btn editPubHub' data-pubhub-id="${pub._id}" style="width: 125px; margin-right: 10px" data-toggle="modal" data-target="#edit-pubHub-modal">Edit Notes</button>
+      <button class='btn btn-danger deletePubHub' style="width: 125px; margin-right: 10px">Delete</button>
+      <a class='btn btn-info reviewPubHub' style="width: 125px; margin-right: 10px" href="/reviews">
+      Reviews
+      </a>
       </li>
       </div>
       </div>

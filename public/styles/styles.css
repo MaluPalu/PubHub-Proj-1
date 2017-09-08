@@ -2,6 +2,7 @@ body {
   background-color: gray;
   font-family: "Open Sans Condensed", sans-serif;
   color: #fafafa;
+  font-size: 16px;
 }
 h1 {
     font-family: "Shadows Into Light", cursive;
@@ -9,6 +10,7 @@ h1 {
 }
 h3 {
     font-family: "Shadows Into Light", cursive;
+    color: #fafafa;
 }
 /*BEG header*/
 .jumbotron {
@@ -37,12 +39,16 @@ h3 {
 
 /*BEG map container*/
 .map-container {
-  width: 100%;
   height: 400px;
   border: green solid 2px;
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 2rem;
+}
+#map {
+  width: 100%;
+  height: 100%;
+
 }
 /*END map container*/
 
@@ -57,10 +63,7 @@ h3 {
   background-color: rgba(255, 255, 255, 0.5);
   padding: .6rem 1rem;
 }
-.container  {
-  padding-right: 10px;
-  padding-left: 10px;
-}
+
 .panel-footer {
   background-color: rgba(255, 255, 255, 0.5);
   padding-top: 15px;
