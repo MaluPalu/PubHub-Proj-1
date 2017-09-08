@@ -12,14 +12,15 @@ $(document).ready(function() {
     })
   }
   //The AJAX call that DELETES any object in the API that is selected
+  //handleDeletePub gets passed id from jQuery
   function handleDeletePub(e, id) {
     e.preventDefault();
-    var currentDeleteId = $(this).closest('.pubHub').data('pub-id');
-    console.log(currentDeleteId);
     $.ajax({
       method: 'DELETE',
       url: '/api/pubHub/' + id,
-      success: handleUpdatedPub,
+      success: function() {
+        $('div[data-pub-id=' + id + ']').remove();
+      },
       error: handleError
     })
   }
@@ -48,7 +49,6 @@ $(document).ready(function() {
     for (let i = 0; i < pubs.length; i++) {
       renderPub(pubs[i]);
     }
-
     //Submits modal form and updates the rendered pubHub with whatever got changed then hides the modal
     $('#pubSubmit').on("submit", function (e) {
       var currentPubId = $('#edit-pubHub-modal').data('pubhub-id');
@@ -79,16 +79,11 @@ $(document).ready(function() {
     updatedDiv.find('.pubNotes').html(data.notes);
     updatedDiv.find('#bckImg').css('background-image', 'url(' + data.photo+ ')');
   }
-  //
-  function handleDeletedPub(data) {
-    var deletedPubId = data._id;
-    $('div[data-pub-id=' + deletedPubId + ']').remove();
-  }
-  //
+  //function to allow err messages in the console to display what the err is
   function handleError(err){
     console.log('There has been an error: ', err);
   }
-  //
+  //renders a single pub with this template whwnver renderPub is called
   function renderPub(pub) {
     var myPubs = (`
       <div class="pubHub col-sm-6" data-pub-id="${pub._id}">

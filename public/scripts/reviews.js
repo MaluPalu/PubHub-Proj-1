@@ -37,30 +37,32 @@ function handleReviewUpdate(e, id, form) {
     error: handleError
   })
 }
+function handleDeleteReview(e, id) {
+  e.preventDefault();
+  $.ajax({
+    method: 'DELETE',
+    url: '/api/pubHub/' + pubHubId + '/reviews/' + id,
+    success: function() {
+      $('div[data-review-id=' + id + ']').remove();
+    },
+    error: handleError
+  })
+}
 
 //Submits modal form and updates the rendered pubHub with whatever got changed then hides the modal
-$('#reviewSubmit').on("submit", function (e) {
-  var currentReviewId = $('#edit-review-modal').data('review-id');
-  handleReviewUpdate(e, currentReviewId, this);
-  $('#edit-review-modal').modal('hide');
-});
-//Allows modal to reset the last things you inputed in previous modal
-$('#edit-pubHub-modal').on('hidden.bs.modal', function(){
-  $(this).find('#pubSubmit')[0].reset();
-});
 
 function handleError(err){
   console.log('There has been an error: ', err);
 }
 function handleUpdatedReview(data) {
-  //Sets the object PubHum recieved from the database to ._id
+  //Sets the object Review recieved from the database to ._id
   var updatedReviewId = data._id;
-  //Selects the div with the attr data-pub-id and sets that attribute to data._id
+  //Selects the div with the attr data-review-id and sets that attribute to data._id
   var updatedReview = $('div[data-review-id=' + updatedReviewId + ']');
   //Find the descendants of currently selected div and changes the html within those
-  updatedDiv.find('.reviewerName').html(data.reviewerName);
-  updatedDiv.find('.reviewerRating').html(data.reviewerRating);
-  updatedDiv.find('.reviewerNotes').html(data.reviewerNotes);
+  updatedReview.find('.reviewerName').html(data.reviewerName);
+  updatedReview.find('.reviewerRating').html(data.reviewerRating);
+  updatedReview.find('.reviewerNotes').html(data.reviewerNotes);
 }
 
 function renderReviews(reviews) {
@@ -68,6 +70,19 @@ function renderReviews(reviews) {
   for (let i = 0; i < reviews.length; i++) {
     renderReview(reviews[i]);
   };
+  $('#reviewSubmit').on("submit", function (e) {
+    var currentReviewId = $('#edit-review-modal').data('review-id');
+    handleReviewUpdate(e, currentReviewId, this);
+    $('#edit-review-modal').modal('hide');
+  });
+  //Allows modal to reset the last things you inputed in previous modal
+  $('#edit-review-modal').on('hidden.bs.modal', function(){
+    $(this).find('#reviewSubmit')[0].reset();
+  });
+  $('#review-form').on("click", '.deleteReview', function (e) {
+    var currentReviewId = $(this).closest('.reviewClass').data('review-id');
+    handleDeleteReview(e, currentReviewId)
+    });
 };
 
 
@@ -76,7 +91,7 @@ function renderReviews(reviews) {
 function renderReview(review) {
   var reviewHtml = (`
     <div class="review-card">
-    <div class="row" data-review-id="${review._id}" style="margin-bottom: 15px;">
+    <div class="row reviewClass" data-review-id="${review._id}" style="margin-bottom: 15px;">
     <div class="col-sm-12">
     <div class="col-sm-6" style="text-align: left; padding-left: 0">
     <h4><b>${review.reviewerName}</b></h4>

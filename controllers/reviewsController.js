@@ -37,26 +37,40 @@ function create(req, res) {
 
 };
 
-function retrieve(req, res) {
-
-};
-
 function destroy(req, res) {
-
+  // db.Reviews.findByIdAndRemove(req.params.id, (err, review) => {
+  //   console.log(req.params.id);
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  //   res.status(200).send();
+  // });
+  db.Reviews.findOne({_id: req.params.pubHubId}, function(err, review){
+    if (err) {
+      console.log(err);
+    }
+    review.deleteOne({
+      reviewerName: req.body.reviewerName,
+      reviewerRating: req.body.reviewerRating,
+      reviewerNotes: req.body.reviewerNotes
+    })
+    res.status(200).send();
+});
 };
 
 function update(req, res) {
+  console.log(req.body);
   db.Reviews.findById(req.params.id, function (err, foundReview) {
     if (err) {
       console.log(err);
       return;
     }
     foundReview.set({
-      reviewerName: req.body.reviewerName,
-      reviewerRating: req.body.reviewerRating,
-      reviewerNotes: req.body.reviewerNotes
+      reviewerName: req.body.reviewerName || foundReview.reviewerName,
+      reviewerRating: req.body.reviewerRating || foundReview.reviewerRating,
+      reviewerNotes: req.body.reviewerNotes || foundReview.reviewerNotes
     });
-    foundPub.save(function (err, updateReview) {
+    foundReview.save(function (err, updateReview) {
       if (err) {
         console.log(err);
       }
@@ -69,7 +83,6 @@ function update(req, res) {
 module.exports = {
   index: index,
   create: create,
-  retrieve: retrieve,
   destroy: destroy,
   update: update
 };

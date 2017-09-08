@@ -42,20 +42,14 @@ function retrieve(req, res) {
 
 // DELETE /api/pubHubs/:pubHubId
 function destroy(req, res) {
-  db.PubHub.findByIdAndRemove(req.params.id, (err, PubHub) => {
+  db.PubHub.findByIdAndRemove(req.params.id, (err, pubhub) => {
+    console.log(req.params.id);
     if (err) {
       console.log(err);
     }
-    PubHub.save(function(err, pubHub) {
-      if (err) {
-        console.log(err);
-      }
-      let response = {
-          message: "PubHub successfully deleted",
-    }
-    res.status(200).send(PubHub);
-  });
+    res.status(200).send();
 });
+
 };
 
 
