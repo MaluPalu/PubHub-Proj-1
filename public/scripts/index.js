@@ -1,5 +1,14 @@
 
 $(document).ready(function() {
+
+  //BEGIN maps
+  // function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 37.78, lng: -122.44},
+      zoom: 13,
+    });
+  //END maps
+
   //Runs PUT request
   function handleUpdate(e, id, form) {
     e.preventDefault();
@@ -11,6 +20,7 @@ $(document).ready(function() {
       error: handleError
     })
   }
+
   //
   function handleDeletePub(e, id) {
     e.preventDefault();
@@ -93,6 +103,13 @@ $(document).ready(function() {
   }
     //
   function renderPub(pub) {
+    var marker = new google.maps.Marker({
+         position: {
+           lat: pub.gpsCoords.lat,
+           lng: pub.gpsCoords.long,
+         },
+         map: map
+       });
     var myPubs = (`
       <div class="pubHub col-sm-6" data-pub-id="${pub._id}" style="padding: 15px; min-height: 300px">
       <div id="bckImg" class="panel-body list-group-item" style="background-image: url('${pub.photo}'); background-repeat: no-repeat; background-size: 100% 100%">

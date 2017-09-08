@@ -14,6 +14,9 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+  <!-- Google Maps API -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"></script>
+
   <!-- APPLICATION SCRIPTS -->
   <script src="/scripts/index.js"></script>
   <script src="/scripts/reviews.js"></script>
@@ -83,8 +86,10 @@
   <div class="container description">
     <p>This site features the nearest Privately Owned Public Outdoor Space within San Francisco. Use the map below to deternine where the nearest location is for you and check out the information about the locations below the map. Feel free to add any locations at the bottom of the page. Reviews for each Pub Hub are welcomed and encouraged!</p>
   </div>
-  <div class="container map-container" style="background-image: url(http://baycityguide.com/media/00PU000000FZF3IMAX/San-Francisco-Bay-Area-Map-518x301.jpg)">
-    <p>Insert Map here</p>
+  <div class="container map-container">
+    <!-- BEG map -->
+    <div id="map"></div>
+    <!-- END map -->
   </div>
 
   <!-- BEG pubHub container-->
