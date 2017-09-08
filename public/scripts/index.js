@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-  //Runs PUT request 
+  //Runs PUT request
   function handleUpdate(e, id, form) {
     e.preventDefault();
     $.ajax({
@@ -40,7 +40,8 @@ $(document).ready(function() {
       data: $(this).serialize(),
       success: renderPub,
       error: handleError
-    })
+    });
+    $(this).trigger("reset");
   });
     //
   function renderPubs(pubs) {
@@ -93,7 +94,7 @@ $(document).ready(function() {
     //
   function renderPub(pub) {
     var myPubs = (`
-      <div class="pubHub col-sm-6" data-pub-id="${pub._id}">
+      <div class="pubHub col-sm-6" data-pub-id="${pub._id}" style="padding: 15px; min-height: 300px">
       <div id="bckImg" class="panel-body list-group-item" style="background-image: url('${pub.photo}'); background-repeat: no-repeat; background-size: 100% 100%">
 
       <!-- begin pubHub internal row -->
@@ -118,9 +119,11 @@ $(document).ready(function() {
       </li>
       </ul>
       <li class="list-group-item">
-      <button class='btn btn-info tgl-btn editPubHub' data-pubhub-id="${pub._id}" style="width: 125px" data-toggle="modal" data-target="#edit-pubHub-modal">Edit Notes</button>
-      <button class='btn btn-danger deletePubHub' style="width: 125px">Delete</button>
-      <button class='btn btn-info reviewPubHub' style="width: 125px"><a href="/reviews">Reviews</a></button>
+        <button class='btn btn-info tgl-btn editPubHub' data-pubhub-id="${pub._id}" style="width: 125px; margin-right: 10px" data-toggle="modal" data-target="#edit-pubHub-modal">Edit Notes</button>
+        <button class='btn btn-danger deletePubHub' style="width: 125px; margin-right: 10px">Delete</button>
+        <a class='btn btn-info reviewPubHub' style="width: 125px; margin-right: 10px" href="/reviews">
+          Reviews
+        </a>
       </li>
       </div>
       </div>
