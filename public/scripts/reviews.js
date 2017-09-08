@@ -1,14 +1,54 @@
 $(document).ready(function() {
+  if (window.location.pathname.split('/').length < 3) {
+    window.location = '/';
+  }
 
+
+var pubHubId = window.location.pathname.split('/')[2];
 
 $.ajax({
   method: 'GET',
-  url: '/api/reviews',
+  url: '/api/pubHub/' + pubHubId + '/reviews',
   success: renderReviews,
   error: handleError
 });
 
-// var renderReviews = console.log("Reviews Rendered!")
+$('.createReview').on("submit", function(event) {
+  console.log("ds");
+  event.preventDefault();
+  console.log($(this).serialize());
+  console.log("pathname = ", window.location.pathname);
+  console.log("pubHubId = ", pubHubId);
+  $.ajax({
+    method: 'POST',
+    url: '/api/pubHub/' + pubHubId + '/reviews',
+    data: $(this).serialize(),
+    success: renderReview,
+    error: handleError
+  })
+});
+// function handleReviewUpdate(e, id, form) {
+//   e.preventDefault();
+//   $.ajax({
+//     method: "PUT",
+//     url: '/api/pubHub/' + pubHubId + '/reviews/' + id,
+//     data: $(form).serialize(),
+//     success: handleUpdatedReview,
+//     error: handleError
+//   })
+// }
+
+// function handleDeleteReview(e, id) {
+//   e.preventDefault();
+//   $.ajax({
+//     method: 'DELETE',
+//     url: '/api/pubHub/' + pubHubId + '/reviews/' + id,
+//     success: function() {
+//       $('div[data-review-id=' + id + ']').remove();
+//     },
+//     error: handleError
+//   })
+// }
 
 function handleError(err){
   console.log('There has been an error: ', err);
@@ -28,7 +68,7 @@ function renderReviews(reviews) {
 //Step 1a, part 3 of 3:
 function renderReview(review) {
   var reviewHtml = (`
-<div class="review-card">
+<form class="review-card">
     <div class="row" data-review-id="${review._id}" style="margin-bottom: 15px;">
   <div class="col-sm-12">
     <div class="col-sm-6" style="text-align: left; padding-left: 0">
@@ -56,7 +96,7 @@ function renderReview(review) {
   </div>
   </div>
   </div>
-  </div>
+  </form>
   <!-- END review form -->`);
   $("#review-form").prepend(reviewHtml);
 }

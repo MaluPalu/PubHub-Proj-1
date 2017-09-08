@@ -11,6 +11,7 @@ var PubHubSchema = new Schema({
   },
   photo: String,
   notes: String,
+  reviews: [ Schema.Types.ObjectId ]
 });
 
 var PubHub = mongoose.model('PubHub', PubHubSchema);

@@ -12,7 +12,7 @@ app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 //Create a route for reviews to be shown
-app.get('/reviews', function homepage(req, res) {
+app.get('/pubHub/:pubHubId/reviews', function homepage(req, res) {
   res.sendFile(__dirname + '/views/reviews.html');
 });
 
@@ -41,7 +41,17 @@ app.put('/api/pubHub/:id', controllers.pubHub.update);
 
 app.delete('/api/pubHub/:id', controllers.pubHub.destroy);
 
-app.get('/api/reviews', controllers.reviews.index);
+
+
+//Routes for review page
+app.get('/api/pubHub/:pubHubId/reviews', controllers.reviews.index);
+
+app.post('/api/pubHub/:pubHubId/reviews', controllers.reviews.create);
+
+app.put('/api/pubHub/:pubHubId/reviews/:id', controllers.reviews.update);
+
+app.delete('/api/pubHub/:pubHubId/reviews/:id', controllers.reviews.destroy);
+
 
 app.listen(process.env.PORT || 4000, function () {
   console.log('Express server is up and running on http://localhost:4000');

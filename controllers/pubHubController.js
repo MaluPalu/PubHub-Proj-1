@@ -53,7 +53,7 @@ function destroy(req, res) {
     //   let response = {
     //       message: "PubHub successfully deleted",
     // }
-    res.status(200).send(PubHub);
+    res.sendStatus(200);
   });
 // });
 };
