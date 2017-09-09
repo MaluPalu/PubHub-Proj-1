@@ -27,16 +27,28 @@ $('.createReview').on("submit", function(event) {
     error: handleError
   })
 });
-// function handleReviewUpdate(e, id, form) {
-//   e.preventDefault();
-//   $.ajax({
-//     method: "PUT",
-//     url: '/api/pubHub/' + pubHubId + '/reviews/' + id,
-//     data: $(form).serialize(),
-//     success: handleUpdatedReview,
-//     error: handleError
-//   })
-// }
+
+function handleReviewUpdate(e, id, form) {
+  e.preventDefault();
+  $.ajax({
+    method: "PUT",
+    url: '/api/pubHub/' + pubHubId + '/reviews/' + id,
+    data: $(form).serialize(),
+    success: handleUpdatedReview,
+    error: handleError
+  })
+}
+
+function handleUpdatedReview(data) {
+  //Sets the object Review recieved from the database to ._id
+  var updatedReviewId = data._id;
+  //Selects the div with the attr data-review-id and sets that attribute to data._id
+  var updatedReview = $('div[data-review-id=' + updatedReviewId + ']');
+  //Find the descendants of currently selected div and changes the html within those
+  updatedReview.find('.reviewerName').html(data.reviewerName);
+  updatedReview.find('.reviewerRating').html(data.reviewerRating);
+  updatedReview.find('.reviewerNotes').html(data.reviewerNotes);
+}
 
 // function handleDeleteReview(e, id) {
 //   e.preventDefault();
@@ -61,6 +73,23 @@ function renderReviews(reviews) {
     console.log('This is a review: ', review);
     renderReview(review);
   });
+    $('.editReview').on("click", function(){
+      $(".edit-review-modal").toggle();
+      debugger;
+    })
+  // $('#reviewSubmit').on("submit", function (e) {
+  //   var currentReviewId = $('#edit-review-modal').data('review-id');
+  //   handleReviewUpdate(e, currentReviewId, this);
+  //   $('#edit-review-modal').modal('hide');
+  // });
+  // //Allows modal to reset the last things you inputed in previous modal
+  // $('#edit-review-modal').on('hidden.bs.modal', function(){
+  //   $(this).find('#reviewSubmit')[0].reset();
+  // });
+  // $('#review-form').on("click", '.deleteReview', function (e) {
+  //   var currentReviewId = $(this).closest('.reviewClass').data('review-id');
+  //   handleDeleteReview(e, currentReviewId)
+  //   });
 }
 
 
