@@ -31,24 +31,13 @@ function create(req, res) {
 };
 
 function destroy(req, res) {
-  // db.Reviews.findByIdAndRemove(req.params.id, (err, review) => {
-  //   console.log(req.params.id);
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  //   res.status(200).send();
-  // });
-  db.Reviews.findOne({_id: req.params.pubHubId}, function(err, review){
+  db.Reviews.findByIdAndRemove(req.params.id, (err, review) => {
+    console.log(req.params.id);
     if (err) {
       console.log(err);
     }
-    review.deleteOne({
-      reviewerName: req.body.reviewerName,
-      reviewerRating: req.body.reviewerRating,
-      reviewerNotes: req.body.reviewerNotes
-    })
     res.status(200).send();
-});
+  });
 };
 
 function update(req, res) {
