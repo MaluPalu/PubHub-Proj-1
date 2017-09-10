@@ -21,7 +21,7 @@ $(document).ready(function() {
       data: $(form).serialize(),
       success: handleUpdatedPub,
       error: handleError
-    })
+    });
   }
 
   //
@@ -37,7 +37,7 @@ $(document).ready(function() {
         handleDeletedPub(data);
       },
       error: handleError
-    })
+    });
   }
   //
   $.ajax({
@@ -79,9 +79,6 @@ $(document).ready(function() {
       $(this).find('#pubSubmit')[0].reset();
     });
     //
-    $(document).on("click", ".editPubHub", function (e) {
-      $('#edit-pubHub-modal').data('pubhub-id', $(this).data('pubhub-id'));
-    })
     $('#pubs').on("click", '.deletePubHub', function (e) {
       var currentPubId = $(this).closest('.pubHub').data('pub-id');
       handleDeletePub(e, currentPubId);
@@ -161,8 +158,11 @@ $(document).ready(function() {
       </div>
       </div>
 
-      </div>`)
+      </div>`);
 
       $('#pubs').append(myPubs);
+      $('#pubs').find('.editPubHub').last().on("click", function() {
+        $('#edit-pubHub-modal').data('pubhub-id', $(this).data('pubhub-id'));
+      });
     };
   });
