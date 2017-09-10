@@ -27,12 +27,15 @@ $(document).ready(function() {
   //
   function handleDeletePub(e, id) {
     e.preventDefault();
-    var currentDeleteId = $(this).closest('.pubHub').data('pub-id');
-    console.log(currentDeleteId);
+    // var currentDeleteId = $(this).closest('.pubHub').data('pub-id');
+    // console.log(currentDeleteId);
     $.ajax({
       method: 'DELETE',
       url: '/api/pubHub/' + id,
-      success: handleDeletedPub,
+      success: function(data) {
+        $('div[data-pub-id=' + id + ']').remove();
+        handleDeletedPub(data);
+      },
       error: handleError
     })
   }
@@ -111,8 +114,8 @@ $(document).ready(function() {
   function renderPub(pub) {
     var marker = new google.maps.Marker({
       position: {
-        lat: pub.gpsCoords.lat,
-        lng: pub.gpsCoords.long,
+        lat: pub.gpsCoords && pub.gpsCoords.lat,
+        lng: pub.gpsCoords && pub.gpsCoords.long,
       },
       map: map
     });
@@ -148,7 +151,7 @@ $(document).ready(function() {
       <li class="list-group-item">
       <button class='btn btn-info tgl-btn editPubHub' data-pubhub-id="${pub._id}" style="width: 125px; margin-right: 10px" data-toggle="modal" data-target="#edit-pubHub-modal">Edit Notes</button>
       <button class='btn btn-danger deletePubHub' style="width: 125px; margin-right: 10px">Delete</button>
-      <a class='btn btn-info reviewPubHub' style="width: 125px; margin-right: 10px" href="/reviews">
+      <a class='btn btn-info reviewPubHub' style="width: 125px; margin-right: 10px" href="/pubHub/${pub._id}/reviews">
       Reviews
       </a>
       </li>
@@ -159,6 +162,7 @@ $(document).ready(function() {
       </div>
 
       </div>`)
+
       $('#pubs').append(myPubs);
     };
   });
