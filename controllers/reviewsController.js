@@ -1,37 +1,82 @@
 let db = require('../models');
+var mongoose = require('mongoose'),
+  Schema = mongoose.Schema;
 
 function index(req, res) {
   // send back all cliffs as JSON
-  db.Reviews.find({}, function(err, reviews){
+  db.Reviews.find({pubHubId: req.params.pubHubId}, function(err, reviews){
     console.log(reviews);
     res.json(reviews)
   });
 }
 
 // POST /api/pubHubs/reviews
-function create1(req, res) {
+function create(req, res) {
   //create pubHub using form data from req parameter
-  var newReview = new db.PubHub({
-    pubHub: req.body.pubHub,
+  var newReview = new db.Reviews({
+    pubHubId: req.params.pubHubId,
     reviewerName: req.body.reviewerName,
     reviewerRating: req.body.reviewerRating,
     reviewerNotes: req.body.reviewerNotes,
   });
-  newReviewer.save(function(err, review){
+  newReview.save(function(err, review){
+    if (err) {
+      console.log('error saving new review', err);
+      return;
+    }
+    console.log("saved newReview with pubhub", review);
+    res.json(review);
+  })
+
+};
+
+function destroy(req, res) {
+  // db.Reviews.findByIdAndRemove(req.params.id, (err, review) => {
+  //   console.log(req.params.id);
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  //   res.status(200).send();
+  // });
+  db.Reviews.findOne({_id: req.params.pubHubId}, function(err, review){
+    if (err) {
+      console.log(err);
+    }
+    review.deleteOne({
+      reviewerName: req.body.reviewerName,
+      reviewerRating: req.body.reviewerRating,
+      reviewerNotes: req.body.reviewerNotes
+    })
+    res.status(200).send();
+});
+};
+
+function update(req, res) {
+  console.log(req.body);
+  db.Reviews.findById(req.params.id, function (err, foundReview) {
     if (err) {
       console.log(err);
       return;
     }
-    console.log("created", review.name);
-    res.json(review);
+    foundReview.set({
+      reviewerName: req.body.reviewerName || foundReview.reviewerName,
+      reviewerRating: req.body.reviewerRating || foundReview.reviewerRating,
+      reviewerNotes: req.body.reviewerNotes || foundReview.reviewerNotes
+    });
+    foundReview.save(function (err, updateReview) {
+      if (err) {
+        console.log(err);
+      }
+      console.log('Updated Review', updateReview);
+      res.send(updateReview);
+  })
   });
 };
 
 
 module.exports = {
   index: index,
-  // create: create,
-  // retrieve: retrieve,
-  // destroy: destroy,
-  // update: update
+  create: create,
+  destroy: destroy,
+  update: update
 };
