@@ -169,7 +169,13 @@ div.col-sm-2 {
   align-items: center;
   justify-content: center;
 }
-.footer-row {
-  display: flex;
-}
 /*END Footer*/
+
+/*BEG footer*/
+.test {
+  padding: 20px 100px 15px 100px;
+  background-color: #001f2e;
+  text-align: right;
+  letter-spacing: 2px;
+}
+/*END footer*/

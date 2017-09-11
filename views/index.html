@@ -98,70 +98,73 @@
   <!-- END pubHub container-->
 
   <!-- BEGIN FORM SAMPLE -->
-    <div class="container-fluid pubHub-container" style="background-image: url('/images/conversation01.jpg')">
-      <section id='pubHub-form' class="container">
-        <form id="formSubmit" class="form-horizontal createMe">
-          <fieldset class="pubHub-content">
-            <!-- Form Name -->
-            <legend><h3>Add a New Pub Hub</h3></legend>
-            <!-- Text input-->
+  <div class="container-fluid pubHub-container" style="background-image: url('/images/conversation01.jpg')">
+    <section id='pubHub-form' class="container">
+      <form id="formSubmit" class="form-horizontal createMe">
+        <fieldset class="pubHub-content">
+          <!-- Form Name -->
+          <legend><h3>Add a New Pub Hub</h3></legend>
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="nameHub">Name</label>
+            <div class="col-md-4">
+              <input type="text" name="nameHub"  placeholder="" class="form-control input-md" required="">
+            </div>
+          </div>
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="streetAddress">Street Address</label>
+            <div class="col-md-4">
+              <input name="streetAddress" type="text" class="form-control input-md" required="">
+            </div>
+          </div>
+          <!-- Textarea -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="crossStreet">Cross Street</label>
+            <div class="col-md-4">
+              <input class="form-control" name="crossStreet">
+            </div>
+          </div>
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="gps">GPS Coordinates</label>
+            <div class="col-md-4">
+              <input class="form-control input-md" name="lat" placeholder="latituide" required="" type="number" min="30" max="50.00" step=".01">
+              <input class="form-control input-md" name="long" placeholder="Longitude" required="" type="number" min="-140.00" max="-100.00" step=".01">
+            </div>
+          </div>
+          <!-- Textarea -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="photo">Photo</label>
+            <div class="col-md-4">
+              <input type="url" class="form-control" name="photo" placeholder="http://www.image_example.com"required="">
+            </div>
+          </div>
+          <!-- Textarea -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="notes">Notes</label>
+            <div class="col-md-4">
+              <textarea class="form-control" name="notes" maxlength="60"></textarea>
+            </div>
+            <!-- Button -->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="nameHub">Name</label>
+              <div class="col-md-4 control-label"></div>
               <div class="col-md-4">
-                <input type="text" name="nameHub"  placeholder="" class="form-control input-md" required="">
+                <button type="submit" class="btn btn-primary save-changes">Submit</button>
               </div>
             </div>
-            <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="streetAddress">Street Address</label>
-              <div class="col-md-4">
-                <input name="streetAddress" type="text" class="form-control input-md" required="">
-              </div>
-            </div>
-            <!-- Textarea -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="crossStreet">Cross Street</label>
-              <div class="col-md-4">
-                <input class="form-control" name="crossStreet">
-              </div>
-            </div>
-            <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="gps">GPS Coordinates</label>
-              <div class="col-md-4">
-                <input class="form-control input-md" name="lat" placeholder="latituide" required="" type="number" min="30" max="50.00" step=".01">
-                <input class="form-control input-md" name="long" placeholder="Longitude" required="" type="number" min="-140.00" max="-100.00" step=".01">
-              </div>
-            </div>
-            <!-- Textarea -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="photo">Photo</label>
-              <div class="col-md-4">
-                <input type="url" class="form-control" name="photo" placeholder="http://www.image_example.com"required="">
-              </div>
-            </div>
-            <!-- Textarea -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="notes">Notes</label>
-              <div class="col-md-4">
-                <textarea class="form-control" name="notes" maxlength="60"></textarea>
-              </div>
-              <!-- Button -->
-              <div class="form-group">
-                <div class="col-md-4 control-label"></div>
-                <div class="col-md-4">
-                  <button type="submit" class="btn btn-primary save-changes">Submit</button>
-                </div>
-              </div>
-            </fieldset>
-          </form>
-        </section>
-      </div>
-    </fieldset>
-  </form>
+          </fieldset>
+        </form>
+      </section>
+    </div>
+  </fieldset>
+</form>
 </section>
 </div>
 <!--   END FORM SAMPLE -->
-
+<!-- BEG footer -->
+<div class="test">
+  <p>Made with ❤ by MALU & CARLYNN</p>
+</div>
 </body>
 </html>

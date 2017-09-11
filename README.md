@@ -1,16 +1,37 @@
-Our app is called Pub Hub
+# PubHubs
 
-PURPOSE:
-To help the community of San Francisco locate their nearest Privately Owned Public Outdoor Space. This app will assist each individual by allowing them to see a San Francisco map and determine where their nearest Pub Hub is located. In addition to this, we are also allowing the community to write reviews on these outdoor spaces.
+This is an application to map out outdoor-public locations around San Francisco.
 
-TECHNOLOGIES USED:
-•	Html
-•	Css
-•	JavaScript
-•	JQuery
-•	Mongodb
-•	AJAX
-•	Bootstrap
+The main functionality of this app allows you to add and review different PubHubs to most optimize your outdoor location.
 
-AUTHORS:
-Malu & Carlynn
+## Deployment
+
+Push your work to Heroku master.
+
+## Built With
+* HTML
+* CSS
+* Javascript
+* Express
+* Mongoose
+* MongoDB
+* body-parser
+* [bootstrap](https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css) - CSS framework
+* [jQuery](//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js) - Javascript Library
+* [Google-Map API](https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg) - API for Google Maps
+
+## Authors
+
+* **Carlynn Espinoza** - *CSS Wizard*
+* **Malu Peralta**  - *GiT Simpleton*
+
+See also the list of [contributors](https://github.com/MaluPalu/PubHub-Proj-1/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Thank you to StackOverflow.
+* *Inspiration* - Hungry and bored.
