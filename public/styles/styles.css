@@ -51,11 +51,10 @@ p {
   display: flex;
 }
 .reviewImage img {
-  max-width:100%;
+  max-width:100;
   max-height: 100%;
   position: absolute;
   border-radius: 10px;
-  margin-left: 25%;
 }
 /*END Review header*/
 
