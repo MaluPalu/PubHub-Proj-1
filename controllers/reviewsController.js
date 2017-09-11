@@ -3,9 +3,8 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 function index(req, res) {
-  // send back all cliffs as JSON
+  // send back all PUBS as JSON
   db.Reviews.find({pubHubId: req.params.pubHubId}, function(err, reviews){
-    console.log(reviews);
     res.json(reviews)
   });
 }
@@ -24,12 +23,12 @@ function create(req, res) {
       console.log('error saving new review', err);
       return;
     }
-    console.log("saved newReview with pubhub", review);
     res.json(review);
   })
 
 };
 
+// DELETE
 function destroy(req, res) {
   db.Reviews.findByIdAndRemove(req.params.id, (err, review) => {
     console.log(req.params.id);
@@ -61,7 +60,6 @@ function update(req, res) {
   })
   });
 };
-
 
 module.exports = {
   index: index,

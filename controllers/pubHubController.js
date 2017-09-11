@@ -2,13 +2,22 @@ let db = require('../models');
 
 
 function index(req, res) {
-  // send back all cliffs as JSON
+  // send back all PUBS as JSON
   db.PubHub.find(function(err, pubHubs){
     if (err) {
       console.log("index error" + err);
       res.sendStatus(500);
     }
     res.send(pubHubs);
+  });
+}
+function show(req,res){
+  db.PubHub.findById(req.params.id, function (err, foundPubHub) {
+    if (err) {
+      console.log("show error" + err);
+      res.sendStatus(500);
+    }
+    res.send(foundPubHub);
   });
 }
 
@@ -49,7 +58,7 @@ function destroy(req, res) {
   });
 };
 
-
+// UPDATE /api/pubHubs/:pubHubId
 function update(req, res) {
   db.PubHub.findById(req.params.id, function (err, foundPub) {
     if (err) {
@@ -81,5 +90,6 @@ module.exports = {
   create: create,
   retrieve: retrieve,
   destroy: destroy,
-  update: update
+  update: update,
+  show: show,
 };

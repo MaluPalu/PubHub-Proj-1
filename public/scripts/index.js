@@ -4,15 +4,14 @@ $(document).ready(function() {
   // Set up object to hold marker references
   var markers = {};
 
-  //BEGIN maps
-  // function initMap() {
+  //BEGIN maps: Renders the map on the page
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.78, lng: -122.44},
     zoom: 13,
   });
   //END maps
 
-  //Runs PUT request
+  //AJAX call that PUTS updated information onto pre-existing PubHub upon success
   function handleUpdate(e, id, form) {
     e.preventDefault();
     $.ajax({
@@ -24,11 +23,9 @@ $(document).ready(function() {
     });
   }
 
-  //
+  //AJAX call that DELETES the selected PubHub id upon success
   function handleDeletePub(e, id) {
     e.preventDefault();
-    // var currentDeleteId = $(this).closest('.pubHub').data('pub-id');
-    // console.log(currentDeleteId);
     $.ajax({
       method: 'DELETE',
       url: '/api/pubHub/' + id,
@@ -39,14 +36,14 @@ $(document).ready(function() {
       error: handleError
     });
   }
-  //
+  //AJAX call that GETS all existing PubHubs in the DB and calls the render function
   $.ajax({
     method: 'GET',
     url:'api/pubHub',
     success: renderPubs,
     error: handleError,
   });
-  //
+  //Ajax call to POST form onto /api/pubHub page
   $('.createMe').on("submit", function(event) {
     event.preventDefault();
     console.log($(this).serialize());
@@ -59,32 +56,31 @@ $(document).ready(function() {
     });
     $(this).trigger("reset");
   });
-  //
+  //Function that renders all seeded Pubs and a single pub whenever it is called
   function renderPubs(pubs) {
     for (let i = 0; i < pubs.length; i++) {
       renderPub(pubs[i]);
     }
-    //
+    //Opens modal---
     $('#edit-pubHub-modal').on("shown.bs.modal", function (e) {
     });
-    //
+    //Function that calls submit and send the data information to the handleUpdate function in a callback and then hides the modal
     $('#pubSubmit').on("submit", function (e) {
       var currentPubId = $('#edit-pubHub-modal').data('pubhub-id');
       handleUpdate(e, currentPubId, this);
       $('#edit-pubHub-modal').modal('hide');
     });
-    //
+    //Resets the modal everytime its opened so pre-existing text does not show up again
     $('#edit-pubHub-modal').on('hidden.bs.modal', function(){
       $(this).find('#pubSubmit')[0].reset();
     });
-    //
+    //Delete function
     $('#pubs').on("click", '.deletePubHub', function (e) {
       var currentPubId = $(this).closest('.pubHub').data('pub-id');
       handleDeletePub(e, currentPubId);
     });
-    // initMap(pubs);
   };
-  //Finds
+  //Function that has the specific id and starts from the containing div of that id and finds the classes to chenge HTML
   function handleUpdatedPub(data) {
     var updatedPubId = data._id;
     var updatedDiv = $('div[data-pub-id=' + updatedPubId + ']');
@@ -94,7 +90,7 @@ $(document).ready(function() {
     updatedDiv.find('.pubNotes').html(data.notes);
     updatedDiv.find('#bckImg').css('background-image', 'url(' + data.photo+ ')');
   }
-  //
+  //Function to delete Pub
   function handleDeletedPub(data) {
     // Retrieve marker reference from "markers" object and remove as per Google docs
     markers[data._id].setMap(null);
@@ -102,11 +98,11 @@ $(document).ready(function() {
     var deletedPubId = data._id;
     $('div[data-pub-id=' + deletedPubId + ']').remove();
   }
-  //
+  //Whenever called describes the error
   function handleError(err){
     console.log('There has been an error: ', err);
   }
-  //
+  //Renders a single pub when form is submitted
   function renderPub(pub) {
     var marker = new google.maps.Marker({
       position: {
@@ -156,9 +152,9 @@ $(document).ready(function() {
       </div>
       </div>
       </div>
-
       </div>`);
-
+      //Function inside rendered Pub so that last appended Pub has click events
+      //Finds the update button that was last
       $('#pubs').append(myPubs);
       $('#pubs').find('.editPubHub').last().on("click", function() {
         $('#edit-pubHub-modal').data('pubhub-id', $(this).data('pubhub-id'));
