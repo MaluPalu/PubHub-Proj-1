@@ -18,7 +18,10 @@ $(document).ready(function() {
   $.ajax({
     method: 'GET',
     url:'/api/pubHub/' + pubHubId,
-    success: renderReviewTitle,
+    success: function(data) {
+      renderReviewTitle(data);
+      renderReviewImage(data);
+    },
     error: handleError,
   });
 
@@ -95,13 +98,21 @@ $(document).ready(function() {
   }
 
   //Update title based off of review you click
-  function renderReviewTitle(reviewTitle) {
-    console.log(arguments);
+  function renderReviewTitle(currentPubHub) {
     var reviewTitleHtml = (`
-      <p>test</p>
+      <h1><b><u>${currentPubHub.nameHub}</u></h1></b>
+      <h4>${currentPubHub.streetAddress}</h4>
       `);
     $("#reviewsTitle").append(reviewTitleHtml);
     };
+
+    //Update title based off of review you click
+    function renderReviewImage(currentPubHubImage) {
+      var reviewImageHtml = (`
+        <img src="${currentPubHubImage.photo}">
+        `);
+      $(".reviewImage").append(reviewImageHtml);
+      };
 
   //Step 1a, part 3 of 3:
   function renderReview(review) {
