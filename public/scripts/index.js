@@ -102,6 +102,8 @@ $(document).ready(function() {
   function handleError(err){
     console.log('There has been an error: ', err);
   }
+
+
   //Renders a single pub when form is submitted
   function renderPub(pub) {
     var marker = new google.maps.Marker({
@@ -114,6 +116,7 @@ $(document).ready(function() {
 
     // Store reference to specific marker in "markers" object
     markers[pub._id] = marker;
+
 
     var myPubs = (`
       <div class="pubHub col-sm-6" data-pub-id="${pub._id}" style="padding: 15px; min-height: 300px">
