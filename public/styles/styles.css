@@ -92,6 +92,7 @@ h3 {
 }
 .reviewsBuffer{
   margin-top: 20px;
+  margin-bottom: 20px;
   background-color: rgba(250, 250, 250, 0.8);
   border-radius: 10px;
 }
