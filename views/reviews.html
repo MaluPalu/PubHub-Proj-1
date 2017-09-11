@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pub Hub</title>
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/styles/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Shadows+Into+Light" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pub Hub</title>
+  <!-- STYLESHEETS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/styles/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Shadows+Into+Light" rel="stylesheet">
 
-    <!-- VENDOR SCRIPTS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!-- VENDOR SCRIPTS -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <!-- APPLICATION SCRIPTS -->
+  <!-- APPLICATION SCRIPTS -->
 
-    <script src="/scripts/reviews.js"></script>
+  <script src="/scripts/reviews.js"></script>
 
-  </head>
-  <body>
-    <div id="edit-review-modal" class="modal fade">
-    	<div class="modal-dialog">
-    		<div class="modal-content">
-    			<div class="modal-header">
-    				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    				<h4 class="modal-title">Edit This Review</h4>
-    			</div>
-    			<form id="reviewSubmit">
-    			<div class="modal-body">
-    				<div class="bold">
-    					Name
-    				</div>
-    				<div class="margin-top-20">
-    					<input name="reviewerName" type="text" class="form-control" />
-    				</div>
-    				<div class="bold margin-top-20">
-    					Rating
-    				</div>
-    				<div class="margin-top-20">
-    					<input name="reviewerRating" type="text" class="form-control" />
-    				</div>
-    				<div class="bold margin-top-20">
-    					Notes
-    				</div>
-    				<div class="margin-top-20">
-    					<input name="reviewerNotes" type="text" class="form-control" />
-    				</div>
-    			</div>
-    			<div class="modal-footer">
-    				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    				<button type="submit" class="btn btn-primary">Save Review</button>
-    			</div>
-    		</form>
-    		</div><!-- /.modal-content -->
-    	</div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <div class="container reviews-header">
-      <h1><u>X's Reviews</u></h1>
-      <h4>X's adress</h4>
-    </div>
-
+</head>
+<body>
+  <div id="edit-review-modal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">Edit This Review</h4>
+        </div>
+        <form id="reviewSubmit">
+          <div class="modal-body">
+            <div class="bold">
+              Name
+            </div>
+            <div class="margin-top-20">
+              <input name="reviewerName" type="text" class="form-control" style="text-transform: uppercase"/>
+            </div>
+            <div class="bold margin-top-20">
+              Rating
+            </div>
+            <div class="margin-top-20">
+              <input name="reviewerRating" type="number" class="form-control"  min="1" max="5"/>
+            </div>
+            <div class="bold margin-top-20">
+              Notes
+            </div>
+            <div class="margin-top-20">
+              <input name="reviewerNotes" type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Review</button>
+          </div>
+        </form>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <div class="container reviews-header">
+    <h1><u>X's Reviews</u></h1>
+    <h4>X's adress</h4>
+  </div> <!-- End header -->
+  <div class="row">
     <!-- BEGIN FORM SAMPLE -->
     <div class="container review-container">
-      <section class="col-sm-6" id="review-container" class="container">
-        <form class="form-horizontal createReview">
+      <section id="review-container" class="container">
+        <form class="form-horizontal createReview col-sm-6">
           <fieldset class="review-content">
             <!-- Form Name -->
             <legend><h3>Add a New Review</h3></legend>
             <!-- Text input-->
             <div class="form-group col-centered">
-              <label class="col-sm-4 control-label" for="reviewerName">Your Name</label>
-              <div class="col-md-4">
-                <input name="reviewerName" type="text" class="form-control input-md" required="">
+              <label class="col-sm-3 control-label" for="reviewerName">Your Name</label>
+              <div class="col-sm-8">
+                <input name="reviewerName" type="text" class="form-control input-md" required="" style="text-transform: uppercase">
               </div>
             </div>
             <!-- Text input-->
             <div class="form-group">
-              <label class="col-sm-4 control-label" for="reviewerRating">Ratinng</label>
-              <div class="col-sm-4">
-                <input name="reviewerRating" type="text" placeholder="1 to 5 stars" class="form-control input-md" required="">
+              <label class="col-sm-3 control-label" for="reviewerRating">Rating</label>
+              <div class="col-sm-8">
+                <input name="reviewerRating" type="number" placeholder="1 to 5 stars" class="form-control input-md" required="" min="1" max="5">
               </div>
             </div>
             <!-- Text input-->
             <div class="form-group">
-              <label class="col-sm-4 control-label" for="reviewerNotes">Notes</label>
-              <div class="col-md-4">
+              <label class="col-sm-3 control-label" for="reviewerNotes">Notes</label>
+              <div class="col-sm-8">
                 <textarea class="form-control input-md" name="reviewerNotes" required="" maxlength="120"
                 placeholder="Max length is 120 characters"></textarea>
               </div>
@@ -93,27 +93,32 @@
             <!-- Textarea -->
             <!-- Button -->
             <div class="form-group">
-              <div class="col-md-4 control-label"></div>
-              <div class="col-md-4">
-                <button id="reviewSubmit" type="submit-review" class="btn btn-primary">Submit</button>
+              <div class="col-sm-11 control-label" style="float:left">
+                <div style="text-align: right">
+                  <button id="reviewSubmit" type="submit-review" class="btn btn-primary">Submit</button>
+                </div>
               </div>
             </div>
           </fieldset>
         </form>
-      </section>
-    </div>
-    <!--   END FORM SAMPLE -->
-    <div class="col-sm-6">
-      <img url('../public/images/review01.jpg')>
-    </div>
 
-    <!-- BEG review container -->
-    <div class="container">
-      <!-- BEG review form -->
-      <div id="review-form">
+        <div class="col-sm-6 col-sm-offset-1">
+          <img src="/images/review01.jpg" style="width:100%; height: 100%; position: absolute; z-index: -1; padding-right: 15px">
+        </div>
+      </section>
+    </div> <!-- END review container -->
+  </div> <!-- END secondHeader -->
+  <!--   END FORM SAMPLE -->
+
+  <!-- BEG review container -->
+  <div class="container-fluid allReviews" style="background-image: url(/images/SanFrancisco01.jpg)">
+    <!-- BEG review form -->
+    <div class="col-sm-8 col-sm-offset-2 reviewsBuffer">
+    <div class="col-sm-12" id="review-form">
     </div>
   </div>
-    <!-- END review container -->
+  </div>
+  <!-- END review container -->
 
-  </body>
+</body>
 </html>

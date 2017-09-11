@@ -61,7 +61,6 @@ $(document).ready(function() {
   });
   //
   function renderPubs(pubs) {
-    console.log(pubs);
     for (let i = 0; i < pubs.length; i++) {
       renderPub(pubs[i]);
     }
@@ -111,8 +110,8 @@ $(document).ready(function() {
   function renderPub(pub) {
     var marker = new google.maps.Marker({
       position: {
-        lat: pub.gpsCoords && pub.gpsCoords.lat,
-        lng: pub.gpsCoords && pub.gpsCoords.long,
+        lat: pub.gpsCoords.lat,
+        lng: pub.gpsCoords.long,
       },
       map: map
     });

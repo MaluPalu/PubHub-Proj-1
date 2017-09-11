@@ -14,18 +14,15 @@ $.ajax({
 });
 
 $('.createReview').on("submit", function(event) {
-  console.log("ds");
   event.preventDefault();
-  console.log($(this).serialize());
-  console.log("pathname = ", window.location.pathname);
-  console.log("pubHubId = ", pubHubId);
   $.ajax({
     method: 'POST',
     url: '/api/pubHub/' + pubHubId + '/reviews',
     data: $(this).serialize(),
     success: renderReview,
     error: handleError
-  })
+  });
+  $(this).trigger("reset");
 });
 
 function handleReviewUpdate(e, id, form) {
@@ -69,9 +66,7 @@ function handleError(err){
 //Step 1a, 2 of 3:
 //This runs through the forEach loop. Each item in the api will be shown and the renderVenue will display this per the function below
 function renderReviews(reviews) {
-  console.log(reviews);
   reviews.forEach(function(review) {
-    console.log('This is a review: ', review);
     renderReview(review);
   });
     // $('.editReview').on("click", function(){
@@ -102,15 +97,16 @@ function renderReviews(reviews) {
 function renderReview(review) {
   var reviewHtml = (`
     <div class="row reviewClass" data-review-id="${review._id}" style="margin-bottom: 15px;">
-  <div class="col-sm-12">
-    <div class="col-sm-6" style="text-align: left; padding-left: 0">
-      <h4><b class="reviewerName">${review.reviewerName}</b></h4>
-    </div>
-    <div class="col-sm-6" style="text-align: right; padding-left: 0">      <h4><b class="reviewerRating">${review.reviewerRating} Stars</b></h4></div>
+      <div class="col-sm-12" style="padding-left: 0">
+        <div class="col-sm-6" style="text-align: left; padding-left: 0">
+        <h4><b class="reviewerName" style="text-transform: uppercase">${review.reviewerName}</b></h4>
+        </div>
+      <div class="col-sm-6" style="text-align: right; padding-left: 0">      <h4><b class="reviewerRating">${review.reviewerRating} Stars</b></h4>
+      </div>
     </div>
 
   <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 reviewerTitleNotes">
   <h4><b>Review:</b></h4>
   </div>
   </div>
@@ -126,8 +122,6 @@ function renderReview(review) {
   </div>
   </div>
   </div>
-  </div>
-</div>
   <!-- END review form -->`);
   $("#review-form").append(reviewHtml);
   $('#review-form').find('.editReview').last().on("click", function() {

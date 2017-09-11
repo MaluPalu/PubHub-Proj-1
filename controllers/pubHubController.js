@@ -31,7 +31,6 @@ function create(req, res) {
       console.log(err);
       return;
     }
-    console.log("created", pub.name);
     res.json(pub);
   });
 };
@@ -46,16 +45,8 @@ function destroy(req, res) {
     if (err) {
       console.log(err);
     }
-    // PubHub.save(function(err, pubHub) {
-    //   if (err) {
-    //     console.log(err);
-    //   }
-    //   let response = {
-    //       message: "PubHub successfully deleted",
-    // }
-    res.sendStatus(200);
+    res.json(PubHub);
   });
-// });
 };
 
 
@@ -80,12 +71,10 @@ function update(req, res) {
       if (err) {
         console.log(err);
       }
-      console.log('Updated Pub', updatePub);
       res.send(updatePub);
   })
 });
 };
-
 
 module.exports = {
   index: index,
