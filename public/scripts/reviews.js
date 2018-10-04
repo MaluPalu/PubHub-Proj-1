@@ -1,15 +1,16 @@
 $(document).ready(function() {
+  //Find the specific parameter where the PubHub Id is
   if (window.location.pathname.split('/').length < 3) {
     window.location = '/';
   }
 
-
+  //Set that PubHub Id to a variable to use in our ajax calls
 var pubHubId = window.location.pathname.split('/')[2];
 
 $.ajax({
   method: 'GET',
   url: '/api/pubHub/' + pubHubId + '/reviews',
-  success: renderReviews,
+  success: renderReviews + renderTitle + renderImg,
   error: handleError
 });
 
@@ -69,15 +70,15 @@ function handleError(err){
 //Step 1a, 2 of 3:
 //This runs through the forEach loop. Each item in the api will be shown and the renderVenue will display this per the function below
 function renderReviews(reviews) {
-  console.log(reviews);
   reviews.forEach(function(review) {
-    console.log('This is a review: ', review);
     renderReview(review);
   });
-    // $('.editReview').on("click", function(){
-    //   console.log("fe");
-    //   $("#edit-review-modal").toggle();
-    // })
+
+function renderTitles(titles) {
+  titles.forEach(function(title) {
+    renderTitle(title);
+  });
+}
   $('#reviewSubmit').on("submit", function (e) {
     var currentReviewId = $('#edit-review-modal').data('review-id');
     handleReviewUpdate(e, currentReviewId, this);
