@@ -1,3 +1,4 @@
+#!/opt/bitnami/nodejs/bin node
 var express = require('express'),
     app = express();
 var db = require("./models")

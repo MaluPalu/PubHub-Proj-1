@@ -1,0 +1,17 @@
+[Unit]
+Description=pubhub
+After=network.target
+
+[Service]
+ExecStart=/home/bitnami/apps/PubHub-Proj-1/server.js
+Restart=always 
+User=nobody 
+# Use 'nogroup' group for Ubuntu/Debian 
+# use 'nobody' group for Fedora 
+Group=nogroup 
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/bitnami/apps/PubHub-Proj-1
+
+[Install]
+WantedBy=multi-user.target
