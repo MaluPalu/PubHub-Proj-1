@@ -16,7 +16,7 @@ $(document).ready(function() {
     e.preventDefault();
     $.ajax({
       method: "PUT",
-      url: '/api/pubHub/' + id,
+      url: '/api/pubHubs/' + id,
       data: $(form).serialize(),
       success: handleUpdatedPub,
       error: handleError
@@ -28,7 +28,7 @@ $(document).ready(function() {
     e.preventDefault();
     $.ajax({
       method: 'DELETE',
-      url: '/api/pubHub/' + id,
+      url: '/api/pubHubs/' + id,
       success: function(data) {
         $('div[data-pub-id=' + id + ']').remove();
         handleDeletedPub(data);
@@ -39,17 +39,17 @@ $(document).ready(function() {
   //AJAX call that GETS all existing PubHubs in the DB and calls the render function
   $.ajax({
     method: 'GET',
-    url:'api/pubHub',
+    url:'/api/pubHubs',
     success: renderPubs,
     error: handleError,
   });
-  //Ajax call to POST form onto /api/pubHub page
+  //Ajax call to POST form onto /api/pubHubs page
   $('.createMe').on("submit", function(event) {
     event.preventDefault();
     console.log($(this).serialize());
     $.ajax({
       method: 'POST',
-      url: '/api/pubHub',
+      url: '/api/pubHubs',
       data: $(this).serialize(),
       success: renderPub,
       error: handleError

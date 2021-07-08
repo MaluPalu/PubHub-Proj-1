@@ -26,16 +26,6 @@ pubHubList.push({
   notes: "This is a small park on top of a parking garage, which gives you an overview of the Financial District.",
 });
 
-//Step 1, 2 of 2
-//Next step, go to server.js file to set up requests
-db.PubHub.remove({}, function(err, pubHubs){
-  db.PubHub.create(pubHubList, function(err, pubHubs){
-    if (err) { return console.log('ERROR', err); }
-    console.log("all pubHubs:", pubHubs);
-    console.log("created", pubHubs.length, "pubHubs");
-    process.exit();
-  });
-});
 
 //Step 2, 1 of 2: This sets up your Reviewer API
 var reviewList = [];
@@ -51,13 +41,34 @@ reviewList.push({
   reviewerNotes: "This place is tidy!",
 });
 
-//Step 2, 2 of 2
+//Step 1, 2 of 2
 //Next step, go to server.js file to set up requests
-db.Reviews.remove({}, function(err, reviews){
-  db.Reviews.create(reviewList, function(err, reviews){
+db.PubHub.remove({}, function(err, pubHubs){
+  db.PubHub.create(pubHubList, function(err, pubHubs){
     if (err) { return console.log('ERROR', err); }
-    console.log("all reviews:", reviews);
-    console.log("created", reviews.length, "reviews");
-    process.exit();
+    console.log("all pubHubs:", pubHubs);
+    console.log("created", pubHubs.length, "pubHubs");
+    // Now that PubHubs are created, set up reviews for them.
+    db.Reviews.remove({}, function(err, reviews){
+      // set up a variable to track how many reviews are successfully created
+      let success = 0;
+      for (let review of reviewList) {
+        // Find the right PubHub so we can set it within the review
+        db.PubHub.find({nameHub: review.pubHubName}, function(err, foundPH) {
+          // But add in the pubHub that we found!
+          review.pubHubId = foundPH[0]._id;
+          console.log(review);
+          console.log(foundPH)
+          db.Reviews.create(review, function(err, createdReview) {
+            console.log("Created review", createdReview);
+            // check if we've created them all successfully yet, to exit process
+            success++;
+            if (success >= reviewList.length) {
+              process.exit();
+            }
+          })
+        })
+      }
+    });
   });
 });

@@ -9,7 +9,7 @@ function index(req, res) {
   });
 }
 
-// POST /api/pubHubs/reviews
+// POST /api/pubHubs/:pubHubId/reviews
 function create(req, res) {
   //create pubHub using form data from req parameter
   var newReview = new db.Reviews({
